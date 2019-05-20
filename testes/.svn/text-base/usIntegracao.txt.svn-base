@@ -1,4 +1,0 @@
-# User Story 2 - CRUD de Unidades Suporte/Solicitante
-
-
-expect "[1 natt, 2 zon7, 3 zon8, 4 mental, 5 eletrico]" getAllUnidadesTRE
