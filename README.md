@@ -1,12 +1,12 @@
 # HelpDesk
 
-Helpdesk is a web app built for Regional Electoral Court of Paraiba State
+Helpdesk is a web app built for Regional Electoral Court of Paraiba State.
 
 
 ## Installation
 
 Use the Apache Ant is a Java library to generate WAR File.
-After, deploy the file in Apache Tomcat
+After, deploy the file in Apache Tomcat.
  
 
 ## Contributing
