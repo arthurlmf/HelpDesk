@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE dwr PUBLIC 
+	"-//GetAhead Limited//DTD Direct Web Remoting 2.0//EN" 
+	"http://getahead.org/dwr//dwr20.dtd">
+<dwr>
+	<allow>
+		<create creator="new" javascript="FacadeAjax">
+			<param name="class" value="facade.FacadeAjax" />
+		</create>
+		<convert converter="bean" match="tipo.*"/>
+		<convert converter="bean" match="usuario.Usuario"/>
+		
+		<convert converter="bean" match="usuario.Tecnico">
+			<param name="exclude" value="gerente,administrador,tecnico,
+			meuIdOuDaMinhaUnidade,unidade,tipoUsuario" />
+		</convert>
+		
+		<convert converter="bean" match="usuario.Unidade">
+			<param name="exclude" value="suporte,gerencia,gerenciaMista,
+			gerenciaApropriacao,gerenciaDelegacao,administrador,
+			meuIdOuDaMinhaUnidade,tecnico,tipoUsuario,unidade" />
+		</convert>
+		
+	 	<convert converter="bean" match="integracaoTRE.UnidadeBDTRE">
+			<param name="exclude" value="descricao" />
+		</convert>
+		
+		<convert converter="bean" match="integracaoTRE.TecnicoBDTRE">
+		</convert>
+		 
+		<convert match="java.lang.Exception" converter="exception">
+  			<param name="include" value="message,lineNumber"/>
+		</convert>  
+
+	</allow>
+</dwr>
+
+<!-- 
+<convert converter="bean" match="com.example.Fred">
+  <param name="exclude" value="property1, property2"/>
+</convert>
+
+<convert converter="bean" match="com.example.Fred">
+  <param name="include" value="property1, property2"/>
+</convert>
+
+
+<create creator="new" javascript="Fred">
+  <param name="class" value="com.example.Fred"/>
+  <include method="setWibble"/>
+</create>
+
+
+<create creator="new" javascript="Fred">
+  <param name="class" value="com.example.Fred"/>
+  <auth method="setWibble" role="admin"/>
+</create>
+ -->	

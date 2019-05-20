@@ -1,0 +1,83 @@
+package tipo;
+
+import java.io.Serializable;
+
+/**
+ * Chave primaria Tipo
+ * @author arthur.farias
+ *
+ */
+public class PrimaryKeyTipo implements Serializable  {
+
+	private static final long serialVersionUID = 1L;
+	private String idUnidade;
+	private String nomeTipo;
+	
+	/**
+	 * Construtor vazio
+	 */
+	public PrimaryKeyTipo(){}
+	
+	/**
+	 * Construtor da Classe
+	 * @param idUnidade
+	 * @param nomeTipo
+	 */
+	public PrimaryKeyTipo(String idUnidade, String nomeTipo) {
+		this.idUnidade = idUnidade;
+		this.nomeTipo = nomeTipo;
+	}
+	/**
+	 * @return the idUnidade
+	 */
+	public String getIdUnidade() {
+		return idUnidade;
+	}
+	/**
+	 * @param idUnidade the idUnidade to set
+	 */
+	public void setIdUnidade(String idUnidade) {
+		this.idUnidade = idUnidade;
+	}
+	/**
+	 * @return the nomeTipo
+	 */
+	public String getNomeTipo() {
+		return nomeTipo;
+	}
+	/**
+	 * @param nomeTipo the nomeTipo to set
+	 */
+	public void setNomeTipo(String nomeTipo) {
+		this.nomeTipo = nomeTipo;
+	}
+	
+	/**
+	 * Verifica se as chaves primarias são iguais
+	 * 
+	 * @param outra
+	 * @return
+	 */
+	public boolean equals(Object outra){
+		try{
+		PrimaryKeyTipo outraKey = (PrimaryKeyTipo)outra;
+		return (getIdUnidade().equals(outraKey.getIdUnidade()) && 
+				getNomeTipo().equals(outraKey.getNomeTipo()));
+		}catch(Exception e){
+			return false;
+		}
+	}
+	public int hashCode(){
+		return (getIdUnidade().hashCode()+getNomeTipo().hashCode());
+	}
+	
+	/**
+	 * Representacao para este chave primaria
+	 * @return String
+	 */
+	public String toString(){
+		return "("+getIdUnidade()+","+ getNomeTipo()+")";
+	}
+
+	
+}

@@ -1,0 +1,179 @@
+K 25
+svn:wc:ra_dav:version-url
+V 40
+/svn/!svn/ver/291/trunk/HelpDesk/src/dao
+END
+VisitaDAO.java
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/svn/!svn/ver/256/trunk/HelpDesk/src/dao/VisitaDAO.java
+END
+ApropriacaoDAO.java
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/!svn/ver/140/trunk/HelpDesk/src/dao/ApropriacaoDAO.java
+END
+TransacaoDeChamadoDAO.java
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/!svn/ver/140/trunk/HelpDesk/src/dao/TransacaoDeChamadoDAO.java
+END
+ResponsavelDoChamadoDAO.java
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/!svn/ver/140/trunk/HelpDesk/src/dao/ResponsavelDoChamadoDAO.java
+END
+AbstractDAO.java
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/svn/!svn/ver/147/trunk/HelpDesk/src/dao/AbstractDAO.java
+END
+ChamadosRepassadosDAO.java
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/!svn/ver/268/trunk/HelpDesk/src/dao/ChamadosRepassadosDAO.java
+END
+ChamadoAtendidoDAO.java
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/!svn/ver/140/trunk/HelpDesk/src/dao/ChamadoAtendidoDAO.java
+END
+DelegacaoDAO.java
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svn/!svn/ver/140/trunk/HelpDesk/src/dao/DelegacaoDAO.java
+END
+TecnicoBDTREDAO.java
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/!svn/ver/140/trunk/HelpDesk/src/dao/TecnicoBDTREDAO.java
+END
+ConfigDAO.java
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/svn/!svn/ver/140/trunk/HelpDesk/src/dao/ConfigDAO.java
+END
+SolucaoDAO.java
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/svn/!svn/ver/140/trunk/HelpDesk/src/dao/SolucaoDAO.java
+END
+FaqDAO.java
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/svn/!svn/ver/140/trunk/HelpDesk/src/dao/FaqDAO.java
+END
+AtendimentoDAO.java
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/!svn/ver/140/trunk/HelpDesk/src/dao/AtendimentoDAO.java
+END
+UnidadeDAO.java
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/svn/!svn/ver/140/trunk/HelpDesk/src/dao/UnidadeDAO.java
+END
+GerenteBDTREDAO.java
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/!svn/ver/140/trunk/HelpDesk/src/dao/GerenteBDTREDAO.java
+END
+TransacaoDAO.java
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svn/!svn/ver/291/trunk/HelpDesk/src/dao/TransacaoDAO.java
+END
+TipoDAO.java
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/svn/!svn/ver/140/trunk/HelpDesk/src/dao/TipoDAO.java
+END
+IntervencaoDAO.java
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/!svn/ver/140/trunk/HelpDesk/src/dao/IntervencaoDAO.java
+END
+TecnicoDAO.java
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/svn/!svn/ver/140/trunk/HelpDesk/src/dao/TecnicoDAO.java
+END
+SubtipoDAO.java
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/svn/!svn/ver/140/trunk/HelpDesk/src/dao/SubtipoDAO.java
+END
+ArtigoDAO.java
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/svn/!svn/ver/140/trunk/HelpDesk/src/dao/ArtigoDAO.java
+END
+EncaminhamentoDAO.java
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/!svn/ver/140/trunk/HelpDesk/src/dao/EncaminhamentoDAO.java
+END
+TecnicoDeUnidadeDAO.java
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/!svn/ver/140/trunk/HelpDesk/src/dao/TecnicoDeUnidadeDAO.java
+END
+UsuarioDAO.java
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/svn/!svn/ver/140/trunk/HelpDesk/src/dao/UsuarioDAO.java
+END
+FecharDAO.java
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/svn/!svn/ver/291/trunk/HelpDesk/src/dao/FecharDAO.java
+END
+InterEncaminhamentoDAO.java
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/!svn/ver/140/trunk/HelpDesk/src/dao/InterEncaminhamentoDAO.java
+END
+UnidadeBDTREDAO.java
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/!svn/ver/140/trunk/HelpDesk/src/dao/UnidadeBDTREDAO.java
+END
+ChamadoDAO.java
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/svn/!svn/ver/140/trunk/HelpDesk/src/dao/ChamadoDAO.java
+END
+GerenteDeUnidadeDAO.java
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/!svn/ver/140/trunk/HelpDesk/src/dao/GerenteDeUnidadeDAO.java
+END

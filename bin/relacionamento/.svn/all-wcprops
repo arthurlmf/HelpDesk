@@ -1,0 +1,95 @@
+K 25
+svn:wc:ra_dav:version-url
+V 51
+/svn/!svn/ver/268/trunk/HelpDesk/src/relacionamento
+END
+VisitaDeChamado.hbm.xml
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/!svn/ver/254/trunk/HelpDesk/src/relacionamento/VisitaDeChamado.hbm.xml
+END
+TecnicoDeUnidade.hbm.xml
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/!svn/ver/140/trunk/HelpDesk/src/relacionamento/TecnicoDeUnidade.hbm.xml
+END
+GerenteDeUnidade.hbm.xml
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/!svn/ver/140/trunk/HelpDesk/src/relacionamento/GerenteDeUnidade.hbm.xml
+END
+ResponsavelDoChamado.hbm.xml
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/svn/!svn/ver/140/trunk/HelpDesk/src/relacionamento/ResponsavelDoChamado.hbm.xml
+END
+TransacaoDeChamado.hbm.xml
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/!svn/ver/254/trunk/HelpDesk/src/relacionamento/TransacaoDeChamado.hbm.xml
+END
+TecnicoDeUnidade.java
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/!svn/ver/140/trunk/HelpDesk/src/relacionamento/TecnicoDeUnidade.java
+END
+ChamadosRepassados.hbm.xml
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/!svn/ver/268/trunk/HelpDesk/src/relacionamento/ChamadosRepassados.hbm.xml
+END
+ChamadoAtendido.hbm.xml
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/!svn/ver/140/trunk/HelpDesk/src/relacionamento/ChamadoAtendido.hbm.xml
+END
+Atendimento.hbm.xml
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/!svn/ver/140/trunk/HelpDesk/src/relacionamento/Atendimento.hbm.xml
+END
+GerenteDeUnidade.java
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/!svn/ver/140/trunk/HelpDesk/src/relacionamento/GerenteDeUnidade.java
+END
+TransacaoDeChamado.java
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/!svn/ver/140/trunk/HelpDesk/src/relacionamento/TransacaoDeChamado.java
+END
+ResponsavelDoChamado.java
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svn/!svn/ver/140/trunk/HelpDesk/src/relacionamento/ResponsavelDoChamado.java
+END
+ChamadosRepassados.java
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/!svn/ver/268/trunk/HelpDesk/src/relacionamento/ChamadosRepassados.java
+END
+ChamadoAtendido.java
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/!svn/ver/140/trunk/HelpDesk/src/relacionamento/ChamadoAtendido.java
+END
+Atendimento.java
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/!svn/ver/140/trunk/HelpDesk/src/relacionamento/Atendimento.java
+END

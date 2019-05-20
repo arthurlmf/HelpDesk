@@ -1,0 +1,23 @@
+K 25
+svn:wc:ra_dav:version-url
+V 35
+/svn/!svn/ver/291/trunk/HelpDesk/BD
+END
+scriptOracle.sql
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/svn/!svn/ver/136/trunk/HelpDesk/BD/scriptOracle.sql
+END
+scriptPostgree.sql
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/svn/!svn/ver/291/trunk/HelpDesk/BD/scriptPostgree.sql
+END
+banco.sql
+K 25
+svn:wc:ra_dav:version-url
+V 45
+/svn/!svn/ver/291/trunk/HelpDesk/BD/banco.sql
+END

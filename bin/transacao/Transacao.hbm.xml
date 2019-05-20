@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping 
+	PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    
+    <class name="transacao.Transacao" table="transacao">
+      
+      <id name="idTransacao" column="id_transacao">
+      	<generator class="identity"/>
+      </id>
+      
+      <component name="data" class="util.Data"> <!-- class attribute optional -->
+        <property name="data" column="data"/>
+    </component>
+    
+    	<property name="tipo" column="tipo"/>
+    	<property name="visivel" column="visivel"/>
+        
+	<joined-subclass name="transacao.Encaminhamento" table="encaminhamento">
+		
+		<key column="id_transacao"/>
+		<property name="tecnicoOrigem" column="tecnico_origem"/>
+		<property name="tecnicoDestino" column="tecnico_destino"/>
+	
+	</joined-subclass>
+	
+	<joined-subclass name="transacao.InterEncaminhamento" table="inter_encaminhamento">
+		
+		<key column="id_transacao"/>
+		<property name="unidadeOrigem" column="unidade_origem"/>
+		<property name="unidadeDestino" column="unidade_destino"/>
+		<property name="tecnicoResponsavel" column="tecnico_responsavel"/>
+	
+	</joined-subclass>
+	
+	<joined-subclass name="transacao.Delegacao" table="delegacao">
+		
+		<key column="id_transacao"/>
+		<property name="tecnicoOrigem" column="tecnico_origem"/>
+		<property name="tecnicoDestino" column="tecnico_destino"/>
+		
+	
+	</joined-subclass>
+	
+	<joined-subclass name="transacao.Intervencao" table="intervencao">
+		
+		<key column="id_transacao"/>
+		<property name="tecnicoResponsavel" column="tecnico_responsavel"/>
+		<property name="descricao" column="descricao"/>
+	
+	</joined-subclass>
+	
+	<joined-subclass name="transacao.Apropriacao" table="apropriacao">
+		
+		<key column="id_transacao"/>
+		<property name="tecnicoResponsavel" column="tecnico_responsavel"/>
+			
+	</joined-subclass>
+	
+	<joined-subclass name="transacao.Fechar" table="fechar">
+		
+		<key column="id_transacao"/>
+		<property name="tecnicoResponsavel" column="tecnico_responsavel"/>
+			
+	</joined-subclass>
+	
+	<joined-subclass name="transacao.Visita" table="visita">
+		
+		<key column="id_transacao"/>
+		
+      <property name="idTecnico" column="id_tecnico"/>
+      <property name="intinerario" column="intinerario"/>
+      <property name="imprevistos" column="imprevistos"/>
+      <property name="cabeamentoEstruturado" column="cabeamento_estruturado"/>
+      <property name="layoutDoAmbiente" column="layout_do_ambiente"/>
+      <property name="tensaoDosEstabilizadores" column="tensao_dos_estabilizadores"/>
+      <property name="instalacoesEletricas" column="instalacoes_eletricas"/>
+      <property name="limpezaDosMicros" column="limpeza_dos_micros"/>
+      <property name="tensaoDosNoBreaks" column="tensao_dos_no_breaks"/>
+      <property name="instalacoesFisicas" column="instalacoes_fisicas"/>
+      <property name="limpezaDasImpressoras" column="limpeza_das_impressoras"/>
+      <property name="organizacaoDosCabos" column="organizacao_dos_cabos"/>
+      <property name="imagensDosMicros" column="imagens_dos_micros"/>
+      <property name="outrosString" column="outros_string"/>
+      <property name="outros" column="outros"/>
+      <property name="pendencias" column="pendencias"/>
+      <property name="servicosRealizados" column="servicos_realizados"/>
+			
+	</joined-subclass>
+	
+  </class>
+  
+</hibernate-mapping>

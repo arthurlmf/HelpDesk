@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping 
+	PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    
+    <class name="chamado.Chamado" table="chamado">
+      
+      <id name="idChamado" column="id_chamado">
+        <generator class="identity"/>
+      </id>
+      
+    <component name="data" class="util.Data"> <!-- class attribute optional -->
+        <property name="data" column="data_de_abertura"/>
+    </component>
+    
+    <property name="estado" column="estado"/>
+    <property name="descricao" column="descricao"/>
+    <property name="tipo" column="tipo"/>
+    <property name="subtipo" column="subtipo"/>
+    <property name="idPatrimonio" column="id_patrimonio"/>
+
+  </class>
+</hibernate-mapping>

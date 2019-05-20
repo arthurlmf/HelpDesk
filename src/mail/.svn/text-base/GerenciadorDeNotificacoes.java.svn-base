@@ -1,0 +1,252 @@
+package mail;
+
+import java.util.LinkedList;
+import java.util.List;
+import java.util.StringTokenizer;
+
+import relacionamento.ChamadoAtendido;
+import sistema.GerenciadorConfig;
+import sistema.GerenciadorDeTecnico;
+import sistema.GerenciadorDeUnidade;
+import transacao.Encaminhamento;
+import transacao.InterEncaminhamento;
+import transacao.Intervencao;
+import transacao.Transacao;
+import chamado.Chamado;
+import config.Config;
+import dao.ConfigDAO;
+import excecoes.HelpDeskException;
+
+/**
+ * 
+ * <b>HelpDeskTRE</b><br><br>
+ *  
+ *  
+ * Classe que representa um gerenciador de notificacoes para o sistema 
+ * 
+ * 
+ * @author Arthur Farias */
+
+
+ */
+public class GerenciadorDeNotificacoes {
+	
+	public static GerenciadorDeNotificacoes instance = null;
+	
+	public boolean isPraNotificar;
+	
+	private SistemaDeCorreio correio;
+
+	public static GerenciadorDeNotificacoes getInstance() throws HelpDeskException {
+		if (instance == null) {
+			instance = new GerenciadorDeNotificacoes();
+		}
+		return instance;
+	}
+	/**
+	 * 
+	 * Construtor da classe
+	 * @throws HelpDeskException 
+	 */
+	private GerenciadorDeNotificacoes() throws HelpDeskException {
+		//correio = new TXTSistemaDeCorreio();
+		correio = new HelpDeskSistemaDeCorreio();
+		try {
+			isPraNotificar = Boolean.parseBoolean(GerenciadorConfig.getInstance().getConfig(Config.NOTIFICACAO).getValor());
+		} catch (Exception e) {
+			isPraNotificar = false;
+		}
+		
+			
+	}
+
+	/**
+	 * Nofifica o encaminhamento para o solicitante
+	 * @param email o email do solicitante
+	 * @param encaminhamento o encaminhamento
+	 * @param chamado 
+	 * @throws HelpDeskException caso ocorra algum erro
+	 */
+	public void notificarEncaminhamento(String email,
+			Encaminhamento encaminhamento, Chamado chamado) throws HelpDeskException {
+		if(!isPraNotificar){
+			return;
+		}
+		String idChamado = chamado.getIdChamado()+ "";
+		String id_Transacao = encaminhamento.getIdTransacao() + "";
+		
+
+		NotificacaoEncaminhamento notificacao = new NotificacaoEncaminhamento();
+
+		notificacao.setData(chamado.getData().DDMMAAAA());
+		notificacao.setHora(chamado.getData().getHorarioCompacto());
+		notificacao.setEstado(chamado.getEstado());
+		notificacao.setId_Chamado(idChamado);
+		notificacao.setDescricao(chamado.getDescricao());
+		
+		
+		
+		notificacao.setTipo(chamado.getTipo());
+		notificacao.setDatatransacao(encaminhamento.getData()
+				.DDMMAAAA());
+		notificacao.setHoraTransacao(encaminhamento.getData()
+				.getHorarioCompacto());
+		notificacao.setId_Transacao(id_Transacao);		
+		notificacao.setNovoTecnico(GerenciadorDeTecnico.getInstance().getTecnico(encaminhamento.getTecnicoDestino()).toString());// o dono do chamado será o novoTecnico
+		notificacao.setTecnicoResponsavel(GerenciadorDeTecnico.getInstance().getTecnico(encaminhamento.getTecnicoOrigem()).toString());
+		notificacao.setTipoTransacao(encaminhamento.getTipo());
+
+		
+		List<String> destinatarios = new LinkedList<String>();
+		destinatarios = adicionarDestinatarios(destinatarios, email);
+		try {
+			correio.enviarEmail(destinatarios,
+					"Notificacao de encaminhamento - chamado de nº " + idChamado,
+					notificacao.getText());
+		} catch (Exception e) {
+			throw new HelpDeskException(
+					"Notificacao de encaminhamento não pode ser enviada"+" - chamado de nº " + idChamado +" - transacao Nr. " + id_Transacao);
+		}
+	}
+	private List<String> adicionarDestinatarios(List<String> destinatarios,
+			String email) throws HelpDeskException {
+		destinatarios.add(email);
+		
+		String emails = GerenciadorConfig.getInstance().getConfig(Config.EMAIL_NOTIFICACOES).getValor();
+		StringTokenizer tokenizer = new StringTokenizer(emails,";");
+		while(tokenizer.hasMoreTokens()){
+			destinatarios.add(tokenizer.nextToken());
+		}
+		return destinatarios;
+	}
+	/**
+	 * Notifica um Movimento
+	 * @param email o email do solicitante
+	 * @param chamado 
+	 * @param ca 
+	 * @param movimento o movimento
+	 * @throws HelpDeskException caso ocorra algum erro 
+	 */
+	public void notificarIntervencao(String email, Intervencao intervencao, Chamado chamado, ChamadoAtendido ca)
+			throws HelpDeskException {
+		if(!isPraNotificar){
+			return;
+		}
+		String idChamado = ca.getIdChamado() + "";
+		String id_Transacao = intervencao.getIdTransacao() + "";
+		
+
+		NotificacaoMovimentacao notificacao = new NotificacaoMovimentacao();
+
+		notificacao.setData(intervencao.getData().DDMMAAAA());
+		notificacao.setHora(intervencao.getData().getHorarioCompacto());
+		notificacao.setEstado(chamado.getEstado());
+		notificacao.setId_Chamado(idChamado);
+		notificacao.setDescricao(chamado.getDescricao());
+		notificacao.setTipo(chamado.getTipo());
+		notificacao.setDatatransacao(chamado.getData()
+				.DDMMAAAA());
+		notificacao.setHoraTransacao(chamado.getData()
+				.getHorarioCompacto());
+		notificacao.setId_Transacao(id_Transacao);
+		notificacao.setDescricaoTransacao(intervencao.getDescricao());
+		
+		notificacao.setTecnicoResponsavel(GerenciadorDeTecnico.getInstance().getTecnico(intervencao.getTecnicoResponsavel()).toString());
+		notificacao.setTipoTransacao(Transacao.INTERVENCAO);
+
+		List<String> destinatarios = new LinkedList<String>();
+		destinatarios = adicionarDestinatarios(destinatarios, email);
+		try {
+			correio.enviarEmail(destinatarios,
+					"Notificacao de intervencao - chamado de nº " + idChamado,
+					notificacao.getText());
+		} catch (Exception e) {
+			throw new HelpDeskException(
+					"Notificacao de intervencao - chamado de nº "  + idChamado +" - transacao Nr. " + id_Transacao);
+		}
+	}
+	/**
+	 * Notifica o solicitante que seu chamado foi recebido
+	 * @param  email o email do solicitante
+	 * @param chamado o chamado criado
+	 * @throws HelpDeskException caso ocorra algum erro
+	 */
+	public void notificarEmAnalise(String email, Chamado chamado)
+			throws HelpDeskException {
+		if(!isPraNotificar){
+			return;
+		}
+		String idChamado = chamado.getIdChamado() + "";
+		NotificacaoEmAnalise notificacao = new NotificacaoEmAnalise();
+
+		notificacao.setData(chamado.getData().DDMMAAAA());
+		notificacao.setHora(chamado.getData().getHorarioCompacto());		
+		notificacao.setId_Chamado(chamado.getIdChamado()+"");
+		notificacao.setDescricao(chamado.getDescricao());
+		notificacao.setTipo(chamado.getTipo());
+		notificacao.setSubtipo(chamado.getSubtipo());
+		notificacao.setEstado(Chamado.EM_ANALISE);
+		
+		List<String> destinatarios = new LinkedList<String>();
+		destinatarios = adicionarDestinatarios(destinatarios, email);
+		try {
+			correio.enviarEmail(destinatarios,
+					"Notificacao de "+Chamado.EM_ANALISE+" - chamado de nº "  + idChamado,
+					notificacao.getText());
+		} catch (Exception e) {
+			throw new HelpDeskException(
+					"Notificacao de "+Chamado.EM_ANALISE+" - chamado de nº " + idChamado);
+		}
+	}
+	
+	/**
+	 * Nofifica o encaminhamento para o solicitante
+	 * @param email o email do solicitante
+	 * @param interEncaminhamento o encaminhamento
+	 * @param chamado 
+	 * @throws HelpDeskException caso ocorra algum erro
+	 */
+	public void notificarInterEncaminhamento(String email,
+			InterEncaminhamento interEncaminhamento, Chamado chamado) throws HelpDeskException {
+		if(!isPraNotificar){
+			return;
+		}
+		String idChamado = chamado.getIdChamado()+ "";
+		String id_Transacao = interEncaminhamento.getIdTransacao() + "";
+		
+
+		NotificacaoInterEncaminhamento notificacao = new NotificacaoInterEncaminhamento();
+
+		notificacao.setData(chamado.getData().DDMMAAAA());
+		notificacao.setHora(chamado.getData().getHorarioCompacto());
+		notificacao.setEstado(chamado.getEstado());
+		notificacao.setId_Chamado(idChamado);
+		notificacao.setDescricao(chamado.getDescricao());
+		
+		
+		
+		notificacao.setTipo(chamado.getTipo());
+		notificacao.setDatatransacao(interEncaminhamento.getData()
+				.DDMMAAAA());
+		notificacao.setHoraTransacao(interEncaminhamento.getData()
+				.getHorarioCompacto());
+		notificacao.setId_Transacao(id_Transacao);
+		notificacao.setNovoTecnico(interEncaminhamento.getNomeTecnicoResponsavel());// o dono do chamado será o novoTecnico
+		notificacao.setTipoTransacao(interEncaminhamento.getTipo());
+		notificacao.setNovaUnidade(GerenciadorDeUnidade.getInstance().getUnidade(interEncaminhamento.getUnidadeDestino()).toString());
+
+		List<String> destinatarios = new LinkedList<String>();
+		destinatarios = adicionarDestinatarios(destinatarios, email);
+		try {
+			correio.enviarEmail(destinatarios,
+					"Notificacao de inter-encaminhamento - chamado de nº " + idChamado,
+					notificacao.getText());
+		} catch (Exception e) {
+			throw new HelpDeskException(
+					"Notificacao de inter-encaminhamento não pode ser enviada"+" - chamado de nº " + idChamado +" - transacao Nr. " + id_Transacao);
+		}
+	}
+
+	
+
+}

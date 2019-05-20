@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping 
+	PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    
+    <class name="tipo.Subtipo" table="subtipo">
+    
+       <composite-id name="chaveSubtipo" class="tipo.PrimaryKeySubTipo" access="property" >  
+          <key-property name="idUnidade" column="id_unidade" />  
+          <key-property name="nomeTipo" column="nome_tipo" />
+          <key-property name="nomeSubtipo" column="nome_subtipo" />   
+       </composite-id>  
+
+      <property name="temPatrimonio" column="tem_patrimonio"/>    
+      <property name="prazoAtendimento" column="prazo_atendimento"/>
+ 
+  </class>
+  
+</hibernate-mapping>

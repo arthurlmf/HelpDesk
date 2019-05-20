@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping 
+	PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    
+    <class name="bancoDeSolucao.Solucao" table="solucao">
+      
+      <id name="idSolucao" column="id_solucao">
+   	        <generator class="foreign">
+				<param name="property">chamado</param>	
+			</generator>	
+      </id>
+      
+      <property name="descricao" column="descricao"/>
+      
+      <one-to-one name="chamado" class="chamado.Chamado" constrained="true"/>
+      
+   	</class>
+</hibernate-mapping>

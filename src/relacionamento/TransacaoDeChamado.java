@@ -1,0 +1,66 @@
+package relacionamento;
+/**
+ * Classe que representa uma Transacao de Chamado
+ * @author arthur.farias
+ *
+ */
+public class TransacaoDeChamado {
+
+	private int id;
+
+	private int idChamado;
+
+	private int idTransacao;
+
+	public TransacaoDeChamado() {
+
+	}
+
+	public TransacaoDeChamado(int idChamado, int idTransacao) {
+		setIdChamado(idChamado);
+		setIdTransacao(idTransacao);
+	}
+
+	/**
+	 * @return the id
+	 */
+	public int getId() {
+		return id;
+	}
+
+	/**
+	 * @param id the id to set
+	 */
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	/**
+	 * @return the idChamado
+	 */
+	public int getIdChamado() {
+		return idChamado;
+	}
+
+	/**
+	 * @param idChamado the idChamado to set
+	 */
+	public void setIdChamado(int idChamado) {
+		this.idChamado = idChamado;
+	}
+
+	/**
+	 * @return the idTransacao
+	 */
+	public int getIdTransacao() {
+		return idTransacao;
+	}
+
+	/**
+	 * @param idTransacao the idTransacao to set
+	 */
+	public void setIdTransacao(int idTransacao) {
+		this.idTransacao = idTransacao;
+	}
+
+}

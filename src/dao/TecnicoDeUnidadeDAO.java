@@ -1,0 +1,131 @@
+package dao;
+
+import java.io.Serializable;
+import java.util.List;
+
+import org.hibernate.Criteria;
+import org.hibernate.Session;
+import org.hibernate.criterion.Expression;
+import org.hibernate.criterion.Order;
+
+import relacionamento.TecnicoDeUnidade;
+import sistema.GerenciadorDeUnidade;
+import usuario.Unidade;
+import excecoes.HelpDeskException;
+
+/**
+ * Classe que representa um Tecnico de Unidade DAO
+ * @author arthur.farias
+ *
+ */
+public class TecnicoDeUnidadeDAO extends AbstractDAO {
+
+	public static String className = "TecnicoDeUnidade";
+	public static TecnicoDeUnidadeDAO instance = null;
+
+	public static TecnicoDeUnidadeDAO getInstance() {
+		if (instance == null) {
+			instance = new TecnicoDeUnidadeDAO();
+		}
+		return instance;
+	}
+
+	public TecnicoDeUnidadeDAO() {
+		super();
+	}
+
+	/**
+	 * Insere um TecnicoDeUnidade no Banco de Dados um objeto na tabela
+	 * correspondente.
+	 * 
+	 * @param tecnicoDeUnidade O TecnicoDeUnidade a ser salvo no Banco de Dados
+	 * @return O id do objeto criado no Banco de Dados
+	 * @throws HelpDeskException caso ocorra algum erro
+	 */
+	public Serializable insert(TecnicoDeUnidade tecnicoDeUnidade) throws HelpDeskException {
+		return super.insert(tecnicoDeUnidade);
+	}
+
+	/**
+	 * Modifica um tecnicoDeUnidade no Banco de Dados.
+	 * 
+	 * @param obj O objeto a ser modificado no Banco de Dados
+	 * @throws HelpDeskException caso ocorra algum erro
+	 */
+	public void update(TecnicoDeUnidade tecnicoDeUnidade) throws HelpDeskException {
+		super.update(tecnicoDeUnidade);
+	}
+
+	/**
+	 * Remove no Banco de Dados um determinado tecnicoDeUnidade.
+	 * 
+	 * @param tecnicoDeUnidade O objeto a ser removido no Banco de Dados
+	 * @throws HelpDeskException caso ocorra algum erro
+	 */
+	public void delete(TecnicoDeUnidade tecnicoDeUnidade) throws HelpDeskException {
+		super.delete(tecnicoDeUnidade);
+	}
+
+	/**
+	 * Metodo que le um objeto do Banco de Dados a partir de um id.
+	 * 
+	 * @param id     O id do objeto.
+	 * @param classe A classe que o objeto pertence.
+	 * @return O objeto lido do Banco de Dados.
+	 */
+
+	public TecnicoDeUnidade read(Serializable id) {
+		return (TecnicoDeUnidade) super.read(TecnicoDeUnidade.class, id);
+	}
+
+	/**
+	 * Retorna uma lista de tecnicoDeUnidades do Banco de Dados com as
+	 * caracteristicas definidas por queryString.
+	 * 
+	 * @param queryString A string da busca.
+	 * @return Uma lista de tecnicoDeUnidades com as caracteristicas definidas por
+	 *         queryString.
+	 */
+
+	public List<TecnicoDeUnidade> getList(String queryString) {
+		return super.getList(queryString);
+	}
+
+	public synchronized Unidade getUnidadedoTecnico(String idTecnico) throws HelpDeskException {
+		Session sess = openSession();
+		Criteria consulta = sess.createCriteria(TecnicoDeUnidade.class);
+
+		consulta.add(Expression.like("tecnico", idTecnico));
+
+		List<TecnicoDeUnidade> resultado = consulta.list();
+		if (resultado.size() > 0) {
+			TecnicoDeUnidade tecDeUni = resultado.get(0);
+			Unidade unidade = GerenciadorDeUnidade.getInstance().getUnidadeSuporte(tecDeUni.getUnidade());
+			return unidade;
+		} else
+			return null;
+	}
+
+	public synchronized List<TecnicoDeUnidade> getListTecnicosDeUnidade(String idUnidade) {
+		Session sess = openSession();
+		Criteria consulta = sess.createCriteria(TecnicoDeUnidade.class);
+		consulta.add(Expression.like("unidade", idUnidade));
+		consulta.addOrder(Order.asc("tecnico"));
+		List<TecnicoDeUnidade> resultado = consulta.list();
+		return resultado;
+	}
+
+	public synchronized boolean isTecnicoJaRelacionado(String idTecnico, String idUnidade) throws HelpDeskException {
+		Unidade uni = getUnidadedoTecnico(idTecnico);
+		return uni != null;
+	}
+
+	/**
+	 * Remove todos as tecnicoDeUnidades contidos no Banco de Dados.
+	 * 
+	 * @throws HelpDeskException caso ocorra algum erro
+	 */
+	public void removeAll() throws HelpDeskException {
+		super.removeAll(className);
+	}
+}

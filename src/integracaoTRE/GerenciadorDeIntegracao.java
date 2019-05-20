@@ -1,0 +1,256 @@
+package integracaoTRE;
+
+import java.util.Collections;
+import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.List;
+
+import sistema.GerenciadorDeRelacionamento;
+import sistema.GerenciadorDeTecnico;
+import sistema.GerenciadorDeUnidade;
+import usuario.Tecnico;
+import usuario.Unidade;
+import util.MsgErros;
+import dao.GerenteBDTREDAO;
+import dao.TecnicoBDTREDAO;
+import dao.UnidadeBDTREDAO;
+import excecoes.HelpDeskException;
+/**
+ * Classe que representa o modulo de Integracao
+ * @author arthur.farias
+ *
+ */
+public class GerenciadorDeIntegracao {
+
+	public static GerenciadorDeIntegracao instance = null;
+
+	public static GerenciadorDeIntegracao getInstance() {
+		if (instance == null) {
+			instance = new GerenciadorDeIntegracao();
+		}
+		return instance;
+	}
+
+	public GerenciadorDeIntegracao() {
+	}
+
+	public void integrarUnidadeSuporte(UnidadeBDTRE uniTre, String idGerente, String matricula)
+			throws HelpDeskException {
+		if (idGerente.trim().isEmpty()) {
+			throw new HelpDeskException(MsgErros.CAMPO_VAZIO.msg("Login"));
+		}
+		if (IntegracaoTREUtil.equalsIgnoreDominio(idGerente, uniTre.getIdUnidade())) {
+			throw new HelpDeskException("ERRO 666 - Login do gerente nao pode ser igual o da unidade");
+		}
+		idGerente = IntegracaoTREUtil.getDominioSeNaoTiver(idGerente.trim());
+		if (!GerenciadorDeTecnico.getInstance().existTecnico(idGerente)) {
+			GerenciadorDeUnidade.getInstance().criarUnidade(
+					IntegracaoTREUtil.getDominioSeNaoTiver(uniTre.getIdUnidade()), uniTre.getIdUnidade(), true);
+			integrarGerenteDaUnidade(uniTre.getIdUnidade(), idGerente, matricula);
+		} else
+			throw new HelpDeskException(MsgErros.OBJETO_EXISTENTE.msg("Tecnico"));
+
+	}
+
+	public void integrarUnidadeSolicitante(UnidadeBDTRE uniTre) throws HelpDeskException {
+		integrarUnidadeSolicitante(uniTre.getIdUnidade());
+	}
+
+	public void integrarUnidadeSolicitante(String idUnidade) throws HelpDeskException {
+		GerenciadorDeUnidade.getInstance().criarUnidade(IntegracaoTREUtil.getDominioSeNaoTiver(idUnidade), idUnidade,
+				false);
+	}
+
+	public UnidadeBDTRE getUnidadeBDTRE(int codigo) throws HelpDeskException {
+		UnidadeBDTRE uni = UnidadeBDTREDAO.getInstance().read(new Integer(codigo));
+		if (uni == null) {
+			throw new HelpDeskException(MsgErros.OBJETO_INEXISTENTE.msg("UnidadeBDTRE"));
+		}
+		return uni;
+	}
+
+	public GerenteBDTRE getGerenteBDTRE(int codigoUnidade) throws HelpDeskException {
+		GerenteBDTRE uni = GerenteBDTREDAO.getInstance().read(new Integer(codigoUnidade));
+		if (uni == null) {
+			throw new HelpDeskException(MsgErros.OBJETO_INEXISTENTE.msg("GerenteBDTRE"));
+		}
+		return uni;
+	}
+
+	public void integrarGerenteDaUnidade(String idUnidade, String idGerente, String matricula)
+			throws HelpDeskException {
+		if (!GerenciadorDeTecnico.getInstance().existTecnico(idGerente)) {
+			TecnicoBDTRE tec = getTecnicoBDTRE(matricula);
+			integrarTecnico(tec, idGerente);
+			GerenciadorDeUnidade.getInstance().setarGerente(IntegracaoTREUtil.getDominioSeNaoTiver(idGerente),
+					IntegracaoTREUtil.getDominioSeNaoTiver(idUnidade));
+		} else
+			throw new HelpDeskException(MsgErros.OBJETO_EXISTENTE.msg("Tecnico"));
+	}
+
+	public void integrarTecnico(TecnicoBDTRE tecTre, String idUsuario) throws HelpDeskException {
+		if (idUsuario.isEmpty()) {
+			throw new HelpDeskException(MsgErros.CAMPO_VAZIO.msg("login"));
+		}
+		idUsuario = IntegracaoTREUtil.getDominioSeNaoTiver(idUsuario).toLowerCase();
+		GerenciadorDeTecnico ger = GerenciadorDeTecnico.getInstance();
+		ger.criarTecnico(idUsuario, tecTre.getNome());
+		GerenciadorDeRelacionamento.getInstance().relacionarTecnicoComUnidade(idUsuario,
+				IntegracaoTREUtil.getDominioSeNaoTiver(tecTre.getIdUnidade()));
+	}
+
+	public void integrarTecnico(String matricula, String idUsuario) throws HelpDeskException {
+		TecnicoBDTRE tec = getTecnicoBDTRE(matricula);
+		integrarTecnico(tec, idUsuario);
+	}
+
+	public synchronized TecnicoBDTRE getTecnicoBDTRE(String idUsuario) throws HelpDeskException {
+		TecnicoBDTRE tec = TecnicoBDTREDAO.getInstance().read(idUsuario);
+		if (tec == null) {
+			throw new HelpDeskException(MsgErros.OBJETO_EXISTENTE.msg("TecnicoBDTRE"));
+		}
+		return tec;
+	}
+
+	public List<UnidadeBDTRE> getAllUnidadeBDTRE() {
+		return UnidadeBDTREDAO.getInstance().getAll();
+	}
+
+	public UnidadeBDTRE getUnidadeBDTRE(String idUnidade) throws HelpDeskException {
+		List<UnidadeBDTRE> lista = UnidadeBDTREDAO.getInstance().getAll();
+		for (UnidadeBDTRE uni : lista) {
+			if (IntegracaoTREUtil.equalsIgnoreDominio(uni.getIdUnidade(), idUnidade)) {
+				return uni;
+			}
+		}
+		throw new HelpDeskException(MsgErros.OBJETO_EXISTENTE.msg("UnidadeBDTRE"));
+	}
+
+	public List<TecnicoBDTRE> getAllTecnicoBDTRE() {
+		return TecnicoBDTREDAO.getInstance().getAll();
+	}
+
+	public List<UnidadeBDTRE> getUnidadesNaoIntegradas() {
+		List<UnidadeBDTRE> listTRE = getAllUnidadeBDTRE();
+		List<Unidade> list = GerenciadorDeUnidade.getInstance().getAllUnidades();
+		return diferencaUnidades(listTRE, list);
+	}
+
+	public boolean isUnidadeIntegrada(String idUnidade) throws HelpDeskException {
+		return GerenciadorDeUnidade.getInstance().existsUnidade(IntegracaoTREUtil.getDominioSeNaoTiver(idUnidade));
+	}
+
+	/**
+	 * Retorna as unidades do BDTRE que ainda nao estao no banco do HelpDesk
+	 * 
+	 * @param listTRE
+	 * @param list
+	 * @return
+	 */
+	private synchronized List<UnidadeBDTRE> diferencaUnidades(List<UnidadeBDTRE> listTRE, List<Unidade> list) {
+		Iterator<UnidadeBDTRE> itTRE = listTRE.iterator();
+		Iterator<Unidade> it = list.iterator();
+		List<UnidadeBDTRE> listResult = new LinkedList<UnidadeBDTRE>();
+		while (itTRE.hasNext()) {
+			UnidadeBDTRE unidadeBDTRE = itTRE.next();
+			boolean existe = false;
+			while (it.hasNext() && !existe) {
+				Unidade unidade = (Unidade) it.next();
+				if (IntegracaoTREUtil.equalsIgnoreDominio(unidade.getIdUsuario(), unidadeBDTRE.getIdUnidade())) {
+					existe = true;
+				}
+			}
+			if (!existe) {
+				listResult.add(unidadeBDTRE);
+			}
+			existe = false;
+			it = list.iterator();
+		}
+		return listResult;
+	}
+
+	public synchronized List<UnidadeBDTRE> getUnidadesNaoSolicitantes(String idUnidadeSuporte)
+			throws HelpDeskException {
+		// unidades do bdtre que ainda não são solicitantes da unidade passado
+		// no parametro
+		List<Unidade> lista = GerenciadorDeRelacionamento.getInstance().getSolicitantesUnidade(idUnidadeSuporte);
+		List<UnidadeBDTRE> listTRE = getAllUnidadeBDTRE();
+		return diferencaUnidades(listTRE, lista);
+	}
+
+	private synchronized List<UnidadeBDTRE> interseccaoDeUnidades(List<UnidadeBDTRE> listTRE, List<Unidade> list) {
+		Iterator<Unidade> it = list.iterator();
+		Iterator<UnidadeBDTRE> itTRE = listTRE.iterator();
+
+		List<UnidadeBDTRE> listResult = new LinkedList<UnidadeBDTRE>();
+		while (it.hasNext()) {
+			Unidade unidade = it.next();
+			while (itTRE.hasNext()) {
+				UnidadeBDTRE unidadeBDTRE = itTRE.next();
+				if (IntegracaoTREUtil.equalsIgnoreDominio(unidade.getIdUnidade(), unidadeBDTRE.getIdUnidade())) {
+					listResult.add(unidadeBDTRE);
+					break;
+				}
+			}
+			itTRE = listTRE.iterator();
+		}
+		return listResult;
+	}
+
+	public synchronized List<TecnicoBDTRE> getTecnicosNaoIntegrados() {
+		List<TecnicoBDTRE> listTRE = getAllTecnicoBDTRE();
+		List<Tecnico> list = GerenciadorDeTecnico.getInstance().getAllTecnicos();
+		List<TecnicoBDTRE> listResult = new LinkedList<TecnicoBDTRE>();
+		Iterator<TecnicoBDTRE> itTRE = listTRE.iterator();
+		Iterator<Tecnico> it = list.iterator();
+		while (itTRE.hasNext()) {
+			TecnicoBDTRE tecnicoBDTRE = itTRE.next();
+			boolean existe = false;
+			while (it.hasNext() && !existe) {
+				Tecnico tecnico = (Tecnico) it.next();
+				if (tecnico.getNome().equalsIgnoreCase(tecnicoBDTRE.getNome())) {
+					existe = true;
+				}
+			}
+			if (!existe) {
+				listResult.add(tecnicoBDTRE);
+			}
+			existe = false;
+			it = list.iterator();
+		}
+		return listResult;
+	}
+
+	public synchronized List<TecnicoBDTRE> getTecnicosNaoIntegrados(String idUnidade) {
+		List<TecnicoBDTRE> lista = getTecnicosNaoIntegrados();
+		LinkedList<TecnicoBDTRE> l2 = new LinkedList<TecnicoBDTRE>(lista);
+		List<TecnicoBDTRE> l = Collections.synchronizedList(l2);
+		for (TecnicoBDTRE tec : l) {
+			if (!IntegracaoTREUtil.equalsIgnoreDominio(tec.getIdUnidade(), idUnidade)) {
+				lista.remove(tec);
+			}
+		}
+		return lista;
+	}
+
+	public List<TecnicoBDTRE> getTecnicosNaoIntegrados(UnidadeBDTRE unidadeBdTre) {
+		return getTecnicosNaoIntegrados(unidadeBdTre.getIdUnidade());
+	}
+
+	public void adicionaSuporte(String idUnidadeSuporte, String idSolicitante) throws HelpDeskException {
+		idUnidadeSuporte = IntegracaoTREUtil.getDominioSeNaoTiver(idUnidadeSuporte.trim());
+		if (!isUnidadeIntegrada(idSolicitante)) {
+			integrarUnidadeSolicitante(idSolicitante.trim());
+		}
+		idSolicitante = IntegracaoTREUtil.getDominioSeNaoTiver(idSolicitante.trim());
+		GerenciadorDeRelacionamento.getInstance().adicionaSuporte(idSolicitante, idUnidadeSuporte);
+	}
+
+	public void removerSuporte(String idUnidadeSuporte, String idSolicitante) throws HelpDeskException {
+		idUnidadeSuporte = IntegracaoTREUtil.getDominioSeNaoTiver(idUnidadeSuporte.trim());
+		idSolicitante = IntegracaoTREUtil.getDominioSeNaoTiver(idSolicitante.trim());
+
+		GerenciadorDeRelacionamento.getInstance().removerSuporte(idSolicitante, idUnidadeSuporte);
+	}
+
+}

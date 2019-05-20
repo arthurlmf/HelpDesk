@@ -1,0 +1,27 @@
+# User Story 2 - CRUD de Unidades Suporte/Solicitante
+
+
+zerarSistema
+expectError "ERRO 511 - Unidade inexistente." getUnidade id="unidade qualquer"
+
+# Unidade
+idUnidade1=criarUnidade idUnidade="natt.jp@tre.br" nome="Natt Jp" isSuporte=false
+expect "Natt Jp" getUnidade id=${idUnidade1}
+
+expect "false" isSuporte id=${idUnidade1}
+setSuporte idUnidade=${idUnidade1} isSuporte=true
+expect "true" isSuporte id=${idUnidade1}
+
+idUnidade2=criarUnidade idUnidade="zon2@tre.br" nome="Zona 2" isSuporte=true
+expect "Zona 2" getUnidade id=${idUnidade2}
+
+idUnidade3=criarUnidade idUnidade="natt.patos@tre.br" nome="NATT PATOS" isSuporte=false
+removerUnidade idUnidade=${idUnidade3}
+
+idUnidade4=criarUnidade idUnidade="transporte@tre.br" nome="Transporte" isSuporte=true
+alterarUnidadeNome idUnidade=${idUnidade4} novoNome="TRANS"
+expect "Trans" getUnidade id=${idUnidade4}
+
+idUnidade5=criarUnidade idUnidade="zon5@tre.br" nome="Zona 5" isSuporte=false
+idUnidade6=criarUnidade idUnidade="zon6@tre.br" nome="Zona 6" isSuporte=false
+

@@ -1,0 +1,48 @@
+# US5 - Tipo de Gerenciamento da Unidade de Suporte
+
+
+#US5.1. Definir o gerente da Unidade de Suporte
+
+# TIPOS DE GERÊNCIA PARA UNIDADE DE SUPORTE
+# 1 - APROPRIACAO(default)
+# 2 - DELEGACAO
+# 3 - MISTA
+
+# Unidade
+idUnidade20=criarUnidade idUnidade="jardinagem@tre.br" nome="JARDINAGEM" isSuporte=false
+
+expectError "Unidade nao fornece suporte" setGerencia idUnidade=${idUnidade20} tipo="MISTA"
+expectError "Unidade nao fornece suporte" getGerencia idUnidade=${idUnidade20}
+expectError "Unidade inexistente" setSuporte idUnidade="unidade qualquer" isSuporte=true
+
+#mudando o isSuporte da unidade de false para true
+setSuporte idUnidade=${idUnidade1} isSuporte=true
+expect "true" isSuporte id=${idUnidade20}
+#obs: ao mudar o suporte de uma unidade de 'false' pra 'true' ela será com uma gerencia de tipo default: 'APROPRIACAO'
+expect "APROPRIACAO" getGerencia idUnidade=${idUnidade20}
+
+expectError setGerencia idUnidade=${idUnidade20} tipo="MISTA"
+expectError "MISTA" getGerencia idUnidade=${idUnidade20}
+
+
+# o tipo de gerencia default, ao criar uma unidade, eh 'APROPRIACAO'
+idUnidade21=criarUnidade idUnidade="portaria@tre.br" nome="Portaria" isSuporte=true
+expect "APROPRIACAO" getGerencia idUnidade=${idUnidade21}
+setGerencia idUnidade=${idUnidade2} tipo="DELEGACAO"
+expect "DELEGACAO" getGerencia idUnidade=${idUnidade2}
+
+#mudando o tipo de unidade de true para false
+setSuporte idUnidade=${idUnidade21} isSuporte=false
+expectError "Unidade nao fornece suporte" getGerencia idUnidade=${idUnidade21}
+
+# parei akiiiiiiiiiiiiiiiiiiiiiiiiiiii
+
+idUnidade4=criarUnidade idUnidade="transporte@tre.br" nome="Transporte" isSuporte=true
+idUnidade5=criarUnidade idUnidade="eletrico@tre.br" nome="Eletrico" isSuporte=true
+idUnidade6=criarUnidade idUnidade="hidraulico@tre.br" nome="Hidraulico" isSuporte=true
+
+
+#US5.2. Criar gerenciamento por delegação
+#US5.3. Criar gerenciamento por apropriação
+#US5.4. Criar gerenciamento misto
+

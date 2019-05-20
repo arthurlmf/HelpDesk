@@ -1,0 +1,59 @@
+K 25
+svn:wc:ra_dav:version-url
+V 46
+/svn/!svn/ver/291/trunk/HelpDesk/src/transacao
+END
+Delegacao.java
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/!svn/ver/140/trunk/HelpDesk/src/transacao/Delegacao.java
+END
+Encaminhamento.java
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/!svn/ver/140/trunk/HelpDesk/src/transacao/Encaminhamento.java
+END
+InterEncaminhamento.java
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/!svn/ver/287/trunk/HelpDesk/src/transacao/InterEncaminhamento.java
+END
+Fechar.java
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svn/!svn/ver/291/trunk/HelpDesk/src/transacao/Fechar.java
+END
+Transacao.java
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/!svn/ver/291/trunk/HelpDesk/src/transacao/Transacao.java
+END
+Intervencao.java
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/!svn/ver/140/trunk/HelpDesk/src/transacao/Intervencao.java
+END
+Transacao.hbm.xml
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/!svn/ver/291/trunk/HelpDesk/src/transacao/Transacao.hbm.xml
+END
+Visita.java
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svn/!svn/ver/259/trunk/HelpDesk/src/transacao/Visita.java
+END
+Apropriacao.java
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/!svn/ver/140/trunk/HelpDesk/src/transacao/Apropriacao.java
+END

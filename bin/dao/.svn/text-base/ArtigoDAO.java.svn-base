@@ -1,0 +1,105 @@
+package dao;
+
+import java.io.Serializable;
+import java.util.List;
+
+import org.hibernate.Session;
+
+import bancoDeSolucao.Artigo;
+import excecoes.HelpDeskException;
+
+public class ArtigoDAO extends AbstractDAO {
+
+	public static String className = "Artigo";
+	public static ArtigoDAO instance = null;
+
+	public static ArtigoDAO getInstance() {
+		if (instance == null) {
+			instance = new ArtigoDAO();
+		}
+		return instance;
+	}
+
+	private ArtigoDAO() {
+		super();
+	}
+
+	/**
+	 * Insere um Artigo no Banco de Dados um objeto na tabela correspondente.
+	 * 
+	 * @param artigo
+	 *            O Artigo a ser salvo no Banco de Dados
+	 * @return O id do objeto criado no Banco de Dados
+	 * @throws HelpDeskException
+	 *             caso ocorra algum erro
+	 */
+	public Serializable insert(Artigo artigo) throws HelpDeskException {
+		return super.insert(artigo);
+	}
+
+	/**
+	 * Modifica um artigo no Banco de Dados.
+	 * 
+	 * @param obj
+	 *            O objeto a ser modificado no Banco de Dados
+	 * @throws HelpDeskException
+	 *             caso ocorra algum erro
+	 */
+	public void update(Artigo artigo) throws HelpDeskException {
+		super.update(artigo);
+	}
+
+	/**
+	 * Remove no Banco de Dados um determinado artigo.
+	 * 
+	 * @param artigo
+	 *            O objeto a ser removido no Banco de Dados
+	 * @throws HelpDeskException
+	 *             caso ocorra algum erro
+	 */
+	public void delete(Artigo artigo) throws HelpDeskException {
+		super.delete(artigo);
+	}
+
+	/**
+	 * Metodo que le um objeto do Banco de Dados a partir de um id.
+	 * 
+	 * @param id
+	 *            O id do objeto.
+	 * @param classe
+	 *            A classe que o objeto pertence.
+	 * @return O objeto lido do Banco de Dados.
+	 */
+
+	public Artigo read(Serializable id) {
+		return (Artigo) super.read(Artigo.class, id);
+	}
+
+	/**
+	 * Retorna uma lista de artigos do Banco de Dados com as caracteristicas
+	 * definidas por queryString.
+	 * 
+	 * @param queryString
+	 *            A string da busca.
+	 * @return Uma lista de artigos com as caracteristicas definidas por
+	 *         queryString.
+	 */
+	
+	public List<Artigo> getList(String queryString) {
+		return super.getList(queryString);
+	}
+
+	/**
+	 * Remove todos as artigos contidos no Banco de Dados.
+	 * 
+	 * @throws HelpDeskException
+	 *             caso ocorra algum erro
+	 */
+	public void removeAll() throws HelpDeskException {
+		super.removeAll(className);
+	}
+	
+	public Session openSession() {
+		return super.openSession();
+	}
+}

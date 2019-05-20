@@ -1,0 +1,344 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts-config PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 1.2//EN" "http://struts.apache.org/dtds/struts-config_1_2.dtd">
+<struts-config>
+ 
+  <form-beans>
+    <form-bean name="LoginForm" type="struts.LoginForm"/>
+  </form-beans>
+  
+  <global-forwards>
+        <forward name="index"  path="/index.jsp"/>
+        <forward name="erro" path="/erro.jsp"/>
+        <forward name="acessoNegado" path="/acessoNegado.jsp"/>
+        <forward name="ok" path="/ok.jsp"/>
+  </global-forwards>
+  
+  <action-mappings>
+  	<action path="/creditos" forward="/creditos.jsp" />
+  	 <!-- Gerencia da minha unidade -->  	  	
+  	<action path="/gerenciarMinhaUnidade" type="struts.CarregarGerenciarMinhaUnidade">
+      <forward name="gerenciarMinhaUnidade" path="/gerenciaUnidadeSuporte.jsp"/>
+    </action>
+    
+    <action path="/definirGerencia" type="struts.DefinirGerenciaAction">
+      <forward name="gerenciarMinhaUnidade" path="/definirGerencia.jsp"/>
+    </action>
+  	
+  
+    <action path="/indexUnidade" type="struts.IndexUnidadeAction">
+      <forward name="unidade" path="/indexUnidade.jsp"/>
+      <forward name="unidadeSuporte" path="/indexUnidadeSuporte.jsp"/>
+    </action>
+
+	<action path="/indexUnidadeSuporte" type="struts.IndexUnidadeSuporteAction">
+	  <forward name="unidadeSuporte" path="/indexUnidadeSuporte.jsp"/>
+    </action>
+    
+    <action path="/indexTecnico" type="struts.IndexTecnicoAction">	  
+	  <forward name="tecnico" path="/indexTecnico.jsp"/>
+    </action>
+           
+    <action path="/listarChamadosUnidade" type="struts.ListarChamadosUnidadeAction">      	  
+	  <forward name="tecnico" path="/indexTecnicoChamadosUnidade.jsp"/>
+    </action>
+    
+    <action path="/listarChamadosSolicitadosUnidade" type="struts.ListarChamadosSolicitadosUnidadeAction"> 
+	  <forward name="unidadeSuporte" path="/chamadosSolicitadosUnidade.jsp"/>
+	  <forward name="unidade" path="/indexUnidade.jsp"/>
+    </action>
+    
+    <action path="/listarChamadosRepassadosUnidade" type="struts.ListarChamadosRepassadosUnidadeAction"> 
+	  <forward name="unidadeSuporte" path="/chamadosRepassadosUnidade.jsp"/>
+	  
+    </action>
+    
+    <action path="/verRelatorioVisita" type="struts.VerRelatorioVisitaAction"> 
+	  <forward name="verRelatorioVisita" path="/verRelatorioVisita.jsp"/>
+    </action>         
+    
+    <action path="/carregarRelatorioVisita" type="struts.CarregarRelatorioVisitaAction"> 
+	  <forward name="relatorioVisita" path="/relatorioVisita.jsp"/>
+    </action>
+    
+    <action path="/confirmarVisita" type="struts.ConfirmarVisitaAction"> 
+	  <forward name="confirmarRelatorioVisita" path="/confirmarRelatorioVisita.jsp"/>
+	  <forward name="verRelatorioVisita" path="/verRelatorioVisita.jsp"/>
+    </action>
+
+    <action path="/relatarVisita" type="struts.RelatarVisitaAction"> 
+	  <forward name="verRelatorioVisita" path="/verRelatorioVisita.jsp"/>
+    </action>
+     
+    <action path="/carregarIntervir" type="struts.CarregarIntervirChamadoAction"> 
+	  <forward name="intervirChamado" path="/intervirChamado.jsp"/>	  
+    </action>
+    
+
+     <action path="/intervirChamado" type="struts.IntervirChamadoAction"> 
+	  <forward name="verChamadoTecnico" path="/verChamadoTecnico.jsp"/>	  
+    </action>
+
+    
+    <action path="/apropriarChamado" type="struts.ApropriarChamadoAction"> 
+	  <forward name="verChamadoTecnico" path="/verChamadoTecnico.jsp"/>	  
+    </action>
+    
+
+    <action path="/aceitarChamado" type="struts.AceitarChamadoAction"> 
+	  <forward name="verChamadoTecnico" path="/verChamadoTecnico.jsp"/>	  
+    </action>
+    
+    <action path="/fecharChamado" type="struts.FecharChamadoAction"> 
+	  <forward name="verChamadoTecnico" path="/verChamadoTecnico.jsp"/>	  
+    </action>
+  
+    <action path="/efetuarLogin" name="LoginForm" type="struts.LoginAction">
+      <forward name="erro" path="/erro.jsp"/>
+      <forward name="indexUnidade" path="/indexUnidade.do"/>
+	  <forward name="indexTecnico" path="/indexTecnico.do"/>
+      <forward name="indexAdministrador" path="/indexAdministrador.do"/>    
+      
+    </action>
+    
+    <action path="/logout" name="LoginForm" type="struts.LogoutAction">
+      <forward name="erro" path="/erro.jsp"/>
+      <forward name="index" path="/index.jsp"/>	      
+      
+    </action>
+    
+   
+    
+    
+   
+    <action path="/chamado" type="struts.ChamadoAction">
+      <forward name="ok" path="/chamado.jsp"/>
+    </action>
+    
+    <action path="/efetuarChamado" type="struts.EfetuarChamadoAction">
+      <forward name="ok" path="/chamadoEfetuadoSucesso.jsp"/>
+    </action>
+   
+    <action path="/verChamado" type="struts.VerChamadoAction">
+      <forward name="verChamado" path="/verChamado.jsp"/>
+    </action>
+    
+    <action path="/verChamadoUnidade" type="struts.VerChamadoUnidadeAction">
+      <forward name="verChamado" path="/verChamado.jsp"/>
+    </action>
+    
+    <action path="/verChamadoTecnico" type="struts.VerChamadoTecnicoAction">
+      <forward name="verChamadoTecnico" path="/verChamadoTecnico.jsp"/>
+    </action>
+    
+
+    <action path="/selecionarTecnicoEncaminhar" type="struts.SelecionarTecnicoEncaminharAction">
+      <forward name="encaminharChamado" path="/encaminharChamado.jsp"/>
+    </action>
+    
+    <action path="/encaminharChamado" type="struts.EncaminharChamadoAction">
+      <forward name="verChamadoTecnico" path="/verChamadoTecnico.jsp"/>
+    </action>
+    
+     <action path="/carregarDelegarChamado" type="struts.CarregarDelegarChamadoAction">
+      <forward name="delegarChamado" path="/delegarChamado.jsp"/>
+    </action>
+    
+     <action path="/delegarChamado" type="struts.DelegarChamadoAction">
+      <forward name="verChamadoTecnico" path="/verChamadoTecnico.jsp"/>
+    </action>
+    
+    <action path="/carregarRepassamento" type="struts.CarregarRepassamentoAction">
+      <forward name="repassarChamado" path="/repassarChamado.jsp"/>
+    </action>
+    
+    <action path="/repassarChamado" type="struts.RepassarChamadoAction">
+      <forward name="verChamadoTecnico" path="/verChamadoTecnico.jsp"/>
+    </action>
+    
+    <action path="/autorizarChamado" type="struts.AutorizarChamadoAction">
+      <forward name="verChamadoTecnico" path="/verChamadoTecnico.jsp"/>
+    </action>
+    
+    <action path="/negarChamado" type="struts.NegarChamadoAction">
+      <forward name="verChamadoTecnico" path="/verChamadoTecnico.jsp"/>
+    </action>
+    
+    <action path="/carregarSolicitarChamado" type="struts.CarregarSolicitarChamadoAction">
+      <forward name="solicitarChamado" path="/solicitarChamado.jsp"/>
+    </action>
+    
+    <action path="/solicitarChamado" type="struts.SolicitarChamadoAction">
+      <forward name="verChamado" path="/verChamado.jsp"/>
+      <forward name="erro" path="/erro.jsp"/>
+    </action>        
+    
+    <action path="/indexAdministrador" forward="/indexAdministrador.jsp" />
+    
+    
+    
+    
+    
+                                 
+    
+    
+    <!-- Base de conhecimento-->
+    <action path="/pesquisarBase" type="struts.PesquisarBaseAction">
+      <forward name="resultadoPesquisarBase" path="/resultadoPesquisarBase.jsp"/>
+    </action>
+    
+    <action path="/indexPesquisarBase" forward="/pesquisarBase.jsp" />
+    
+    <action path="/pesquisarBaseCompleta" type="struts.PesquisarBaseCompletaAction">
+      <forward name="resultadoPesquisarBase" path="/resultadoPesquisarBase.jsp"/>
+      <forward name="indexPesquisarBase" path="/pesquisarBase.jsp"/>
+    </action>
+    
+    <action path="/verFaq" type="struts.VerFaqAction">
+      <forward name="verFaq" path="/verFaq.jsp"/>
+    </action>
+    
+    <action path="/carregarEditarFaq" type="struts.CarregarEditarFaqAction">
+      <forward name="editarFaq" path="/editarFaq.jsp"/>
+    </action>
+    
+    <action path="/editarFaq" type="struts.EditarFaqAction">
+      <forward name="editarFaq" path="/editarFaq.jsp"/>
+    </action>
+    
+    <action path="/verArtigo" type="struts.VerArtigoAction">
+      <forward name="verArtigo" path="/verArtigo.jsp"/>
+    </action>
+       
+    
+    <action path="/carregarEditarArtigo" type="struts.CarregarEditarArtigoAction">
+      <forward name="editarArtigo" path="/editarArtigo.jsp"/>
+    </action>
+    
+    <action path="/editarArtigo" type="struts.EditarArtigoAction">
+      <forward name="editarArtigo" path="/editarArtigo.jsp"/>
+    </action>
+    
+    <action path="/verSolucao" type="struts.VerSolucaoAction">
+      <forward name="verSolucao" path="/verSolucao.jsp"/>
+    </action>
+    
+	
+	 <action path="/carregarCriarArtigo" type="struts.CarregarCriarArtigoAction">
+      <forward name="criarArtigo" path="/criarArtigo.jsp"/>
+    </action>
+    
+    <action path="/criarArtigo" type="struts.CriarArtigoAction">
+      <forward name="criarArtigo" path="/criarArtigo.jsp"/>
+    </action>
+        
+    <action path="/carregarCriarFaq" type="struts.CarregarCriarFaqAction">
+      <forward name="criarFaq" path="/criarFaq.jsp"/>
+    </action>
+	
+    <action path="/criarFaq" type="struts.CriarFaqAction">
+      <forward name="criarFaq" path="/criarFaq.jsp"/>
+    </action>
+    
+    
+    
+    
+    <!-- Gerenciamento de unidade-->
+    <action path="/gerenciarUnidade" forward="/gerenciarUnidade.jsp" />    
+    
+    <action path="/editarUnidade" type="struts.EditarUnidadeAction">
+      <forward name="editarUnidade" path="/editarUnidade.jsp"/>
+    </action>
+    
+     <action path="/carregarEditarUnidade" type="struts.CarregarEditarUnidadeAction">
+      <forward name="editarUnidade" path="/editarUnidade.jsp"/>
+    </action>  
+    
+    <action path="/editarUnidadeSuporte" type="struts.EditarUnidadeSuporteAction">
+      <forward name="editarUnidadeSuporte" path="/editarUnidadeSuporte.jsp"/>
+    </action>        
+    
+    <action path="/criarUnidade" type="struts.CriarUnidadeAction">
+      <forward name="carregarCriarUnidade" path="/criarUnidade.jsp"/>
+    </action>
+    
+    <action path="/removerUnidade" type="struts.RemoverUnidadeAction">
+      <forward name="removerUnidade" path="/removerUnidade.jsp"/>
+    </action>
+    
+    <action path="/carregarRemoverUnidade" type="struts.CarregarRemoverUnidadeAction">
+      <forward name="removerUnidade" path="/removerUnidade.jsp"/>
+    </action>
+    
+    <!-- Gerenciamento de tecnico-->
+    <action path="/gerenciarTecnico" forward="/gerenciarTecnico.jsp" />
+    
+    <action path="/removerTecnico" forward="/removerTecnico.jsp" />
+    
+    <action path="/criarTecnico" type="struts.CriarTecnicoAction">
+      <forward name="criarTecnico" path="/carregarCriarTecnico.do"/>
+    </action>    
+    <action path="/carregarCriarTecnico" type="struts.CarregarCriarTecnicoAction">
+      <forward name="criarTecnico" path="/criarTecnico.jsp"/>
+    </action>
+    
+    <action path="/editarTecnico" type="struts.EditarTecnicoAction">
+      <forward name="editarTecnico" path="/editarTecnico.jsp"/>
+    </action>        
+    <action path="/carregarEditarTecnico" type="struts.CarregarEditarTecnicoAction">      
+      <forward name="editarTecnico" path="/editarTecnico.jsp"/>      
+    </action>
+    
+     <action path="/removerTecnico" type="struts.RemoverTecnicoAction">
+      <forward name="removerTecnico" path="/removerTecnico.jsp"/>
+    </action>    
+    <action path="/carregarRemoverTecnico" type="struts.CarregarRemoverTecnicoAction">
+      <forward name="removerTecnico" path="/removerTecnico.jsp"/>
+    </action>
+    
+    
+    
+     <!-- Gerenciamento de Configuracoes-->
+    <action path="/carregarEditarConfiguracoes" type="struts.CarregarEditarConfiguracoesAction">
+      <forward name="editarConfiguracoes" path="/editarConfiguracoes.jsp"/>
+    </action>
+    
+    <action path="/editarConfiguracoes" type="struts.EditarConfiguracoesAction">
+      <forward name="editarConfiguracoes" path="/editarConfiguracoes.jsp"/>
+    </action>
+    
+    <action path="/carregarGerenciarUnidades" type="struts.CarregarGerenciarUnidadesAction">
+      <forward name="gerenciarUnidades" path="/definirUnidadeSuporte.jsp"/>
+    </action>
+    
+    
+    <!-- Gerar Relatorio-->
+    
+    <action path="/carregarGerarRelatorio" type="struts.CarregarGerarRelatorioAction">
+      <forward name="gerarRelatorio" path="/relatorioTecnico.jsp"/>
+    </action> 
+    
+    <action path="/gerarRelatorioTecnico" type="struts.GerarRelatorioTecnicoAction">
+      <forward name="resultadoChamadosTecnico" path="/resultadoChamadosTecnico.jsp"/>
+    </action>
+        
+        
+        
+    <!-- Pesquisar Chamado-->
+    <action path="/carregarPesquisarChamadoUnidade" type="struts.CarregarPesquisarChamadoUnidadeAction">
+      <forward name="pesquisarChamadoUnidade" path="/pesquisarChamadoUnidade.jsp"/>
+    </action> 
+    
+    <action path="/carregarPesquisarChamadoTecnico" type="struts.CarregarPesquisarChamadoTecnicoAction">
+      <forward name="pesquisarChamadoTecnico" path="/pesquisarChamadoTecnico.jsp"/>
+    </action>
+    
+    <action path="/pesquisarChamadoTecnico" type="struts.PesquisarChamadoTecnicoAction">
+      <forward name="resultadoChamadosTecnico" path="/resultadoChamadosTecnico.jsp"/>
+    </action>
+    
+    <action path="/pesquisarChamadoUnidade" type="struts.PesquisarChamadoUnidadeAction">
+      <forward name="resultadoChamadosUnidade" path="/resultadoChamadosUnidade.jsp"/>
+    </action>
+   
+  </action-mappings>
+</struts-config>

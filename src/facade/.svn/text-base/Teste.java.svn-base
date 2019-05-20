@@ -1,0 +1,41 @@
+package facade;
+
+import integracaoTRE.GerenciadorDeIntegracao;
+import sistema.GerenciadorDeTecnico;
+import sistema.GerenciadorDeUnidade;
+import dao.GerenteBDTREDAO;
+import dao.TecnicoBDTREDAO;
+import dao.UnidadeBDTREDAO;
+
+public class Teste {
+
+	/**
+	 * @param args
+	 */
+	public static void main(String[] args) {
+		FacadeHelpDesk fac = new FacadeHelpDesk();
+		System.out.println(fac.getAllUnidades());
+		
+		UnidadeBDTREDAO dao = UnidadeBDTREDAO.getInstance();
+		System.out.println(dao.read(new Integer(1)));
+		
+		TecnicoBDTREDAO dao1 = TecnicoBDTREDAO.getInstance();
+		System.out.println(dao1.read("lauricio"));
+		
+		GerenteBDTREDAO dao2 = GerenteBDTREDAO.getInstance();
+		System.out.println(dao2.read(new Integer(5)));
+		
+		
+		System.out.println(GerenciadorDeIntegracao.getInstance().getAllUnidadeBDTRE());
+		System.out.println(GerenciadorDeUnidade.getInstance().getAllUnidades());
+		
+		GerenciadorDeIntegracao ger =  GerenciadorDeIntegracao.getInstance();
+		System.out.println(ger.getUnidadesNaoIntegradas());
+		
+		System.out.println(GerenciadorDeIntegracao.getInstance().getAllTecnicoBDTRE());
+		System.out.println(GerenciadorDeTecnico.getInstance().getAllTecnicos());
+		System.out.println(ger.getTecnicosNaoIntegrados());
+
+	}
+
+}

@@ -1,0 +1,47 @@
+#US4 - CRUD dos Tecnicos das Unidade de Suporte
+
+################### PANO DE FUNDO BEGIN ###############
+zerarSistema
+
+# Unidade
+idUnidade1=criarUnidade idUnidade="natt.jp@tre.br" nome="Natt Jp" isSuporte=false
+setSuporte idUnidade=${idUnidade1} isSuporte=true
+idUnidade2=criarUnidade idUnidade="zon2@tre.br" nome="Zona 2" isSuporte=true
+idUnidade4=criarUnidade idUnidade="transporte@tre.br" nome="Transporte" isSuporte=true
+idUnidade5=criarUnidade idUnidade="eletrico@tre.br" nome="Eletrico" isSuporte=true
+idUnidade6=criarUnidade idUnidade="hidraulico@tre.br" nome="Hidraulico" isSuporte=true
+
+################### PANO DE FUNDO END ###############
+
+
+
+#*US4.1 Criar Técnico e Ler
+
+idTecnico1=criarTecnico idTecnico="inaldo@tre.br" nome="inaldo"
+idTecnico2=criarTecnico idTecnico="werber@tre.br" nome="werber"
+idTecnico3=criarTecnico idTecnico="nelson@tre.br"  nome="nelson"
+idTecnico4=criarTecnico idTecnico="lauricio@tre.br"  nome="lauricio"
+idTecnico5=criarTecnico idTecnico="erick@tre.br"  nome="erick"
+idTecnico6=criarTecnico idTecnico="danusio@tre.br"  nome="danusio"
+idTecnico7=criarTecnico idTecnico="calberto@tre.br"  nome="carlos alberto"
+idTecnico9=criarTecnico idTecnico="sylvio@tre.br"  nome="sylvio"
+idTecnico10=criarTecnico idTecnico="jpaulo@tre.br"  nome="joao paulo"
+idTecnico11=criarTecnico idTecnico="guga@tre.br"  nome="ze de guga"
+idTecnico12=criarTecnico idTecnico="carloscg@tre.br"  nome="carlos"
+idTecnico13=criarTecnico idTecnico="jerry@tre.br"  nome="jerry"
+idTecnico14=criarTecnico idTecnico="jonascg@tre.br"  nome="jonas"
+idTecnico15=criarTecnico idTecnico="beto@tre.br" nome="roberto"
+
+expect "Inaldo" getTecnico id=${idTecnico1}
+expectError "ERRO 511 - Tecnico inexistente." getTecnico id="nada"
+
+#*US4.2 Remover Técnico
+expectError "ERRO 511 - Tecnico inexistente." removerTecnico idTecnico="nada"
+removerTecnico idTecnico=${idTecnico1}
+expectError "ERRO 511 - Tecnico inexistente." getTecnico id=${idTecnico1}
+
+#*US4.3 Alterar Técnico
+alterarTecnicoNome  idTecnico=${idTecnico2} novoNome="lewis hamilton"
+expect "Lewis Hamilton" getTecnico id=${idTecnico2}
+
+

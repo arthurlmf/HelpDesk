@@ -1,0 +1,120 @@
+# US6 - SOLICITACAO DE CHAMADOS
+zerarSistema
+
+################### PANO DE FUNDO BEGIN ###############
+idUnidade1=criarUnidade idUnidade="zon7@tre.br" nome="Zona 7" isSuporte=false
+idUnidade2=criarUnidade idUnidade="informatica@tre.br" nome="Informatica" isSuporte=true
+idUnidade3=criarUnidade idUnidade="eletrico@tre.br" nome="Eletrico" isSuporte=true
+idUnidade4=criarUnidade idUnidade="mental@tre.br" nome="Mental" isSuporte=true
+idUnidade5=criarUnidade idUnidade="portaria@tre.br" nome="Portaria" isSuporte=false
+
+idTecnico1=criarTecnico idTecnico="inaldo@tre.br" nome="Inaldo"
+idTecnico2=criarTecnico idTecnico="werber@tre.br" nome="werber"
+idTecnico3=criarTecnico idTecnico="nelson@tre.br"  nome="nelson"
+idTecnico4=criarTecnico idTecnico="lauricio@tre.br"  nome="lauricio"
+idTecnico5=criarTecnico idTecnico="erick@tre.br"  nome="erick"
+idTecnico6=criarTecnico idTecnico="danusio@tre.br"  nome="danusio"
+idTecnico7=criarTecnico idTecnico="dr.carneiro@tre.br"  nome="Dr. Carneiro"
+idTecnico8=criarTecnico idTecnico="dr.bode@tre.br"  nome="Dr. Bode"
+idTecnico9=criarTecnicoAdministrador idTecnico="admin@tre.br"  nome="Administrador"
+
+relacionarTecnicoComUnidade tecnico=${idTecnico1} unidade=${idUnidade2}
+relacionarTecnicoComUnidade tecnico=${idTecnico2} unidade=${idUnidade2}
+relacionarTecnicoComUnidade tecnico=${idTecnico3} unidade=${idUnidade2}
+relacionarTecnicoComUnidade tecnico=${idTecnico4} unidade=${idUnidade3}
+relacionarTecnicoComUnidade tecnico=${idTecnico5} unidade=${idUnidade3}
+relacionarTecnicoComUnidade tecnico=${idTecnico7} unidade=${idUnidade4}
+relacionarTecnicoComUnidade tecnico=${idTecnico8} unidade=${idUnidade4}
+
+relacionarTecnicoComUnidade tecnico=${idTecnico6} unidade=${idUnidade3}
+setarGerente tecnico=${idTecnico6} unidade=${idUnidade3}
+setarGerente tecnico=${idTecnico1} unidade=${idUnidade2}
+
+# CRIA OS TIPOS #
+idTipo1=criarTipoDaUnidade idUnidade=${idUnidade2} tipo="Hardware" 
+idTipo2=criarTipoDaUnidade idUnidade=${idUnidade2} tipo="Software" 
+idTipo3=criarTipoDaUnidade idUnidade=${idUnidade3} tipo="Fios" 
+idTipo4=criarTipoDaUnidade idUnidade=${idUnidade4} tipo="Psicologico"
+idTipo5=criarTipoDaUnidade idUnidade=${idUnidade4} tipo="Psiquiatra" 
+
+## Cria Os subTipos
+idSubtipo1=criarSubtipo idUnidade=${idUnidade2} idTipo="Hardware" subtipo="Teclado" temPatrimonio=true  prazoAtendimento=10
+idSubtipo2=criarSubtipo idUnidade=${idUnidade2} idTipo="Hardware" subtipo="Mouse" temPatrimonio=false prazoAtendimento=10
+idSubtipo3=criarSubtipo idUnidade=${idUnidade2} idTipo="Hardware" subtipo="Monitor" temPatrimonio=true prazoAtendimento=10
+idSubtipo4=criarSubtipo idUnidade=${idUnidade2} idTipo="Software" subtipo="Windows" temPatrimonio=false prazoAtendimento=10
+idSubtipo5=criarSubtipo idUnidade=${idUnidade2} idTipo="Software" subtipo="Linux" temPatrimonio=false prazoAtendimento=10
+idSubtipo6=criarSubtipo idUnidade=${idUnidade3} idTipo="Fios" subtipo="fio azul" temPatrimonio=true prazoAtendimento=10
+idSubtipo7=criarSubtipo idUnidade=${idUnidade3} idTipo="Fios" subtipo="fio verde" temPatrimonio=false prazoAtendimento=10
+idSubtipo8=criarSubtipo idUnidade=${idUnidade4} tipo="Psiquiatra" subtipo="Esquizofrenia" temPatrimonio=false prazoAtendimento=10
+idSubtipo9=criarSubtipo idUnidade=${idUnidade4} tipo="Psiquiatra" subtipo="Bulimia" temPatrimonio=false prazoAtendimento=10
+idSubtipo10=criarSubtipo idUnidade=${idUnidade4} tipo="Psicologico"  subtipo="Depressao" temPatrimonio=false prazoAtendimento=10
+idSubtipo11=criarSubtipo idUnidade=${idUnidade4} tipo="Psicologico"  subtipo="Ansiedade" temPatrimonio=false prazoAtendimento=10
+
+#Criar o suporte
+adicionaSuporte idUnidadeSolicitante=${idUnidade4} idUnidadeSuporte=${idUnidade2}
+adicionaSuporte idUnidadeSolicitante=${idUnidade4} idUnidadeSuporte=${idUnidade3}
+adicionaSuporte idUnidadeSolicitante=${idUnidade1} idUnidadeSuporte=${idUnidade4}
+adicionaSuporte idUnidadeSolicitante=${idUnidade1} idUnidadeSuporte=${idUnidade3}
+adicionaSuporte idUnidadeSolicitante=${idUnidade1} idUnidadeSuporte=${idUnidade2}
+adicionaSuporte idUnidadeSolicitante=${idUnidade2} idUnidadeSuporte=${idUnidade3}
+adicionaSuporte idUnidadeSolicitante=${idUnidade3} idUnidadeSuporte=${idUnidade2}
+
+
+
+################### PANO DE FUNDO END ###############
+
+
+# US6 - SOLICITACAO DE CHAMADOS
+
+
+# CONSISTENCIA DA SOLICITACAO CHAMADOS #
+
+idChamado1=solicitarChamado descricao="fio desencapado" tipo="Fios" subtipo="fio azul" idPatrimonio="abc123" unidadeSolicitante=${idUnidade1} unidadeSuporte=${idUnidade3}
+idChamado2=solicitarChamado descricao="fio inexistente" tipo="Fios" subtipo="fio azul" idPatrimonio="123" unidadeSolicitante=${idUnidade1} unidadeSuporte=${idUnidade3}
+idChamado3=solicitarChamado descricao="eletrica pedindo um suporte de software" tipo="Software"  subtipo="Windows" idPatrimonio="" unidadeSolicitante=${idUnidade3} unidadeSuporte=${idUnidade2}
+solicitarChamado descricao="To com dor de cabeca" tipo="Psicologico" subtipo="Depressao" idPatrimonio="" unidadeSolicitante=${idUnidade1} unidadeSuporte=${idUnidade4}
+expect "[1, 2, 4]" getChamadosSolicitados idUnidade=${idUnidade1}
+
+
+
+apropriarChamado idChamado=${idChamado1} tecnico=${idTecnico4}
+intervirChamado idChamado=${idChamado1} descricao="coloquei superbonder" visivel="true"
+encaminharChamado idChamado=${idChamado1} tecnico=${idTecnico5}
+aceitarChamado idChamado=${idChamado1}
+intervirChamado idChamado=${idChamado1} descricao="coloquei durepox" visivel="true"
+encaminharChamado idChamado=${idChamado1} tecnico=${idTecnico4}
+aceitarChamado idChamado=${idChamado1}
+intervirChamado idChamado=${idChamado1} descricao="passei grude" visivel="true"
+
+interEncaminharChamado idChamado=${idChamado1} idUnidade=${idUnidade2}
+autorizarInterEncaminhamento idChamado=${idChamado1}
+expectError "ERRO 519 - O chamado nao pode ser fechado." fecharChamado idChamado=${idChamado1} adicionarBase="true"
+apropriarChamado idChamado=${idChamado1} tecnico=${idTecnico2}
+fecharChamado idChamado=${idChamado1} adicionarBase="true"
+
+
+
+apropriarChamado idChamado=${idChamado2} tecnico=${idTecnico6}
+intervirChamado idChamado=${idChamado2} descricao="essa n pode ser vista" visivel="false"
+intervirChamado idChamado=${idChamado2} descricao="essa pode ser vista" visivel="true"
+encaminharChamado idChamado=${idChamado2} tecnico=${idTecnico4}
+aceitarChamado idChamado=${idChamado2}
+interEncaminharChamado idChamado=${idChamado2} idUnidade=${idUnidade2}
+
+
+# TESTAR ERROS#
+
+expectError "ERRO 511 - Chamado inexistente." getChamado idChamado=-99
+
+expectError "ERRO 520 - A unidade Mental nao fornece suporte para a unidade Informatica." solicitarChamado descricao="eletrica pedindo" tipo="Fios" subtipo=${idSubtipo6} idPatrimonio="" unidadeSolicitante=${idUnidade2} unidadeSuporte=${idUnidade4}
+expectError "ERRO 521 - A unidade Mental nao fornece suporte para o tipo Fios." solicitarChamado descricao="Merda atolada no esgoto" tipo="Fios" subtipo=${idSubtipo12} idPatrimonio="" unidadeSolicitante=${idUnidade1} unidadeSuporte=${idUnidade4}
+
+expectError "ERRO 511 - Tipo inexistente." solicitarChamado descricao="Merda atolada no esgoto" tipo="nao existe" subtipo=${idSubtipo12} idPatrimonio="" unidadeSolicitante=${idUnidade1} unidadeSuporte=${idUnidade4}
+expectError "ERRO 511 - Subtipo inexistente." solicitarChamado descricao="Minha rede desfiou" tipo="Fios" subtipo="sem tipo dah erro" idPatrimonio="" unidadeSolicitante=${idUnidade1} unidadeSuporte=${idUnidade3}
+expectError "ERRO 522 - O Subtipo Linux nao existente para o tipo Fios." solicitarChamado descricao="Minha rede desfiou" tipo="Fios" subtipo="Linux" idPatrimonio="" unidadeSolicitante=${idUnidade1} unidadeSuporte=${idUnidade3}
+expectError "ERRO 522 - O Subtipo Depressao nao existente para o tipo Fios." solicitarChamado descricao="Minha rede desfiou" tipo="Fios" subtipo="Depressao" idPatrimonio="" unidadeSolicitante=${idUnidade1} unidadeSuporte=${idUnidade3}
+expectError "ERRO 523 - Patrimonio invalido para o subtipo fio azul." solicitarChamado descricao="fio inexistente" tipo="Fios" subtipo="fio azul" idPatrimonio="" unidadeSolicitante=${idUnidade1} unidadeSuporte=${idUnidade3}
+
+expectError "ERRO 511 - Unidade inexistente." solicitarChamado descricao="fio inexistente" tipo="Fios" subtipo="fio azul" idPatrimonio="" unidadeSolicitante="nenhum" unidadeSuporte=${idUnidade3}
+expectError "ERRO 511 - Unidade inexistente." solicitarChamado descricao="fio inexistente" tipo="Fios" subtipo="fio azul" idPatrimonio="" unidadeSolicitante="${idUnidade5}" unidadeSuporte=${idUnidade3}
+expectError "ERRO 524 - Descricao Invalida." solicitarChamado descricao="" tipo="Software"  subtipo="Windows" idPatrimonio="" unidadeSolicitante=${idUnidade3} unidadeSuporte=${idUnidade2}

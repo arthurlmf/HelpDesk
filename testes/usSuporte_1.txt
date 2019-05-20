@@ -1,0 +1,38 @@
+# User Story 3.1 - Relacionamento entre Unidades (Atendimento e Encaminhamento) - Remocao de suporte
+
+
+# unidades de suporte
+idUnidade13=criarUnidade idUnidade="hidrico@tre.br" nome="Hidrico" isSuporte=true
+idUnidade14=criarUnidade idUnidade="juridico@tre.br" nome="Juridico" isSuporte=true
+idUnidade15=criarUnidade idUnidade="seguranca@tre.br" nome="Seguranca" isSuporte=true
+
+#Unidades somente solicitantes
+idUnidade16=criarUnidade idUnidade="zon16@tre.br" nome="Zona 16" isSuporte=false
+idUnidade17=criarUnidade idUnidade="zon17@tre.br" nome="Zona 17" isSuporte=false
+idUnidade18=criarUnidade idUnidade="zon18@tre.br" nome="Zona 18" isSuporte=false
+
+
+
+expect "" getSuportes idUnidadeSolicitante=${idUnidade16}
+adicionaSuporte idUnidadeSolicitante=${idUnidade16} idUnidadeSuporte=${idUnidade13}
+adicionaSuporte idUnidadeSolicitante=${idUnidade17} idUnidadeSuporte=${idUnidade13}
+adicionaSuporte idUnidadeSolicitante=${idUnidade18} idUnidadeSuporte=${idUnidade13}
+adicionaSuporte idUnidadeSolicitante=${idUnidade16} idUnidadeSuporte=${idUnidade14}
+adicionaSuporte idUnidadeSolicitante=${idUnidade16} idUnidadeSuporte=${idUnidade15}
+expect "[Zona 16], [Zona 17], [Zona 18]" getSolicitantes idUnidadeSuporte=${idUnidade13}
+expect "[Hidrico], [Juridico], [Seguranca]" getSuportes idUnidadeSolicitante=${idUnidade16}
+
+removerSuporte idUnidadeSolicitante=${idUnidade16} idUnidadeSuporte=${idUnidade13}
+expect "[Zona 17], [Zona 18]" getSolicitantes idUnidadeSuporte=${idUnidade13}
+expect "[Juridico], [Seguranca]" getSuportes idUnidadeSolicitante=${idUnidade16}
+
+removerSuporte idUnidadeSolicitante=${idUnidade17} idUnidadeSuporte=${idUnidade13}
+expect "[Zona 18]" getSolicitantes idUnidadeSuporte=${idUnidade13}
+expect "" getSuportes idUnidadeSolicitante=${idUnidade17}
+
+#teste de erros
+
+expectError "ERRO 511 - Unidade inexistente." removerSuporte idUnidadeSolicitante="qualquer" idUnidadeSuporte=${idUnidade13}
+expectError "ERRO 511 - Unidade inexistente." removerSuporte idUnidadeSolicitante=${idUnidade16} idUnidadeSuporte="qualquer"
+expectError "ERRO 511 - Unidade inexistente." removerSuporte idUnidadeSolicitante="qualquer" idUnidadeSuporte="qualquer"
+expectError "Unidade Zona 17 nao fornece suporte" removerSuporte idUnidadeSolicitante=${idUnidade16} idUnidadeSuporte=${idUnidade17}

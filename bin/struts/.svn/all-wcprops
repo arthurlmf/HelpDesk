@@ -1,0 +1,431 @@
+K 25
+svn:wc:ra_dav:version-url
+V 43
+/svn/!svn/ver/292/trunk/HelpDesk/src/struts
+END
+EditarArtigoAction.java
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/!svn/ver/249/trunk/HelpDesk/src/struts/EditarArtigoAction.java
+END
+SelecionarTecnicoEncaminharAction.java
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svn/!svn/ver/249/trunk/HelpDesk/src/struts/SelecionarTecnicoEncaminharAction.java
+END
+PesquisarChamadoUnidadeAction.java
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/!svn/ver/249/trunk/HelpDesk/src/struts/PesquisarChamadoUnidadeAction.java
+END
+CarregarGerenciarUnidadesAction.java
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/svn/!svn/ver/249/trunk/HelpDesk/src/struts/CarregarGerenciarUnidadesAction.java
+END
+VerFaqAction.java
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/!svn/ver/249/trunk/HelpDesk/src/struts/VerFaqAction.java
+END
+GerarRelatorioTecnicoAction.java
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/!svn/ver/291/trunk/HelpDesk/src/struts/GerarRelatorioTecnicoAction.java
+END
+ListarChamadosSolicitadosUnidadeAction.java
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svn/!svn/ver/270/trunk/HelpDesk/src/struts/ListarChamadosSolicitadosUnidadeAction.java
+END
+CarregarRelatorioVisitaAction.java
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/!svn/ver/264/trunk/HelpDesk/src/struts/CarregarRelatorioVisitaAction.java
+END
+CriarFaqAction.java
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/!svn/ver/249/trunk/HelpDesk/src/struts/CriarFaqAction.java
+END
+CriarUnidadeAction.java
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/!svn/ver/249/trunk/HelpDesk/src/struts/CriarUnidadeAction.java
+END
+CarregarRemoverTecnicoAction.java
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svn/!svn/ver/249/trunk/HelpDesk/src/struts/CarregarRemoverTecnicoAction.java
+END
+ChamadoAction.java
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/!svn/ver/249/trunk/HelpDesk/src/struts/ChamadoAction.java
+END
+RepassarChamadoAction.java
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/!svn/ver/285/trunk/HelpDesk/src/struts/RepassarChamadoAction.java
+END
+IndexUnidadeAction.java
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/!svn/ver/249/trunk/HelpDesk/src/struts/IndexUnidadeAction.java
+END
+ApropriarChamadoAction.java
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/!svn/ver/249/trunk/HelpDesk/src/struts/ApropriarChamadoAction.java
+END
+CarregarCriarTecnicoAction.java
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/!svn/ver/249/trunk/HelpDesk/src/struts/CarregarCriarTecnicoAction.java
+END
+ListarChamadosRepassadosUnidadeAction.java
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/!svn/ver/282/trunk/HelpDesk/src/struts/ListarChamadosRepassadosUnidadeAction.java
+END
+CarregarGerenciarMinhaUnidade.java
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/!svn/ver/249/trunk/HelpDesk/src/struts/CarregarGerenciarMinhaUnidade.java
+END
+CarregarRemoverUnidadeAction.java
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svn/!svn/ver/249/trunk/HelpDesk/src/struts/CarregarRemoverUnidadeAction.java
+END
+IndexUnidadeSuporteAction.java
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/!svn/ver/249/trunk/HelpDesk/src/struts/IndexUnidadeSuporteAction.java
+END
+RemoverTecnicoAction.java
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/!svn/ver/249/trunk/HelpDesk/src/struts/RemoverTecnicoAction.java
+END
+CarregarEditarArtigoAction.java
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/!svn/ver/249/trunk/HelpDesk/src/struts/CarregarEditarArtigoAction.java
+END
+CarregarIntervirChamadoAction.java
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/!svn/ver/249/trunk/HelpDesk/src/struts/CarregarIntervirChamadoAction.java
+END
+CarregarDelegarChamadoAction.java
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svn/!svn/ver/271/trunk/HelpDesk/src/struts/CarregarDelegarChamadoAction.java
+END
+CarregarEditarConfiguracoesAction.java
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svn/!svn/ver/249/trunk/HelpDesk/src/struts/CarregarEditarConfiguracoesAction.java
+END
+ListarChamadosUnidadeAction.java
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/!svn/ver/282/trunk/HelpDesk/src/struts/ListarChamadosUnidadeAction.java
+END
+MySession.java
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svn/!svn/ver/140/trunk/HelpDesk/src/struts/MySession.java
+END
+AutorizarChamadoAction.java
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/!svn/ver/249/trunk/HelpDesk/src/struts/AutorizarChamadoAction.java
+END
+LoginForm.java
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svn/!svn/ver/249/trunk/HelpDesk/src/struts/LoginForm.java
+END
+CarregarCriarFaqAction.java
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/!svn/ver/249/trunk/HelpDesk/src/struts/CarregarCriarFaqAction.java
+END
+ControladorPermissoes.java
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/!svn/ver/140/trunk/HelpDesk/src/struts/ControladorPermissoes.java
+END
+VerArtigoAction.java
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/!svn/ver/249/trunk/HelpDesk/src/struts/VerArtigoAction.java
+END
+CarregarPesquisarChamadoTecnicoAction.java
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/!svn/ver/249/trunk/HelpDesk/src/struts/CarregarPesquisarChamadoTecnicoAction.java
+END
+CriarArtigoAction.java
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/!svn/ver/249/trunk/HelpDesk/src/struts/CriarArtigoAction.java
+END
+CarregarRepassamentoAction.java
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/!svn/ver/285/trunk/HelpDesk/src/struts/CarregarRepassamentoAction.java
+END
+LoginAction.java
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/!svn/ver/249/trunk/HelpDesk/src/struts/LoginAction.java
+END
+RemoverUnidadeAction.java
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/!svn/ver/249/trunk/HelpDesk/src/struts/RemoverUnidadeAction.java
+END
+VerChamadoAction.java
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/!svn/ver/257/trunk/HelpDesk/src/struts/VerChamadoAction.java
+END
+RelatarVisitaAction.java
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/!svn/ver/283/trunk/HelpDesk/src/struts/RelatarVisitaAction.java
+END
+EditarTecnicoAction.java
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/!svn/ver/249/trunk/HelpDesk/src/struts/EditarTecnicoAction.java
+END
+VerChamadoTecnicoAction.java
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/!svn/ver/257/trunk/HelpDesk/src/struts/VerChamadoTecnicoAction.java
+END
+DelegarChamadoAction.java
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/!svn/ver/249/trunk/HelpDesk/src/struts/DelegarChamadoAction.java
+END
+VerSolucaoAction.java
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/!svn/ver/249/trunk/HelpDesk/src/struts/VerSolucaoAction.java
+END
+EncaminharChamadoAction.java
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/!svn/ver/249/trunk/HelpDesk/src/struts/EncaminharChamadoAction.java
+END
+Constantes.java
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svn/!svn/ver/291/trunk/HelpDesk/src/struts/Constantes.java
+END
+CarregarEditarTecnicoAction.java
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/!svn/ver/249/trunk/HelpDesk/src/struts/CarregarEditarTecnicoAction.java
+END
+EditarUnidadeSuporteAction.java
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/!svn/ver/249/trunk/HelpDesk/src/struts/EditarUnidadeSuporteAction.java
+END
+AceitarChamadoAction.java
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/!svn/ver/292/trunk/HelpDesk/src/struts/AceitarChamadoAction.java
+END
+CarregarPesquisarChamadoUnidadeAction.java
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/!svn/ver/291/trunk/HelpDesk/src/struts/CarregarPesquisarChamadoUnidadeAction.java
+END
+PesquisarBaseCompletaAction.java
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/!svn/ver/249/trunk/HelpDesk/src/struts/PesquisarBaseCompletaAction.java
+END
+EditarFaqAction.java
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/!svn/ver/249/trunk/HelpDesk/src/struts/EditarFaqAction.java
+END
+EditarUnidadeAction.java
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/!svn/ver/249/trunk/HelpDesk/src/struts/EditarUnidadeAction.java
+END
+VerChamadoUnidadeAction.java
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/!svn/ver/249/trunk/HelpDesk/src/struts/VerChamadoUnidadeAction.java
+END
+FecharChamadoAction.java
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/!svn/ver/291/trunk/HelpDesk/src/struts/FecharChamadoAction.java
+END
+SolicitarChamadoAction.java
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/!svn/ver/249/trunk/HelpDesk/src/struts/SolicitarChamadoAction.java
+END
+CarregarEditarFaqAction.java
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/!svn/ver/249/trunk/HelpDesk/src/struts/CarregarEditarFaqAction.java
+END
+EfetuarChamadoAction.java
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/!svn/ver/249/trunk/HelpDesk/src/struts/EfetuarChamadoAction.java
+END
+CarregarEditarUnidadeAction.java
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/!svn/ver/249/trunk/HelpDesk/src/struts/CarregarEditarUnidadeAction.java
+END
+NegarChamadoAction.java
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/!svn/ver/249/trunk/HelpDesk/src/struts/NegarChamadoAction.java
+END
+IntervirChamadoAction.java
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/!svn/ver/249/trunk/HelpDesk/src/struts/IntervirChamadoAction.java
+END
+EditarConfiguracoesAction.java
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/!svn/ver/249/trunk/HelpDesk/src/struts/EditarConfiguracoesAction.java
+END
+CarregarGerarRelatorioAction.java
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svn/!svn/ver/291/trunk/HelpDesk/src/struts/CarregarGerarRelatorioAction.java
+END
+VerRelatorioVisitaAction.java
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/!svn/ver/281/trunk/HelpDesk/src/struts/VerRelatorioVisitaAction.java
+END
+PesquisarChamadoTecnicoAction.java
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/!svn/ver/249/trunk/HelpDesk/src/struts/PesquisarChamadoTecnicoAction.java
+END
+ConfirmarVisitaAction.java
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/!svn/ver/283/trunk/HelpDesk/src/struts/ConfirmarVisitaAction.java
+END
+CriarTecnicoAction.java
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/!svn/ver/249/trunk/HelpDesk/src/struts/CriarTecnicoAction.java
+END
+PesquisarBaseAction.java
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/!svn/ver/249/trunk/HelpDesk/src/struts/PesquisarBaseAction.java
+END
+LogoutAction.java
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/!svn/ver/140/trunk/HelpDesk/src/struts/LogoutAction.java
+END
+IndexTecnicoAction.java
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/!svn/ver/270/trunk/HelpDesk/src/struts/IndexTecnicoAction.java
+END
+CarregarSolicitarChamadoAction.java
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svn/!svn/ver/249/trunk/HelpDesk/src/struts/CarregarSolicitarChamadoAction.java
+END
+CarregarCriarArtigoAction.java
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/!svn/ver/249/trunk/HelpDesk/src/struts/CarregarCriarArtigoAction.java
+END

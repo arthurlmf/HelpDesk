@@ -1,0 +1,100 @@
+package dao;
+
+import java.io.Serializable;
+import java.util.List;
+
+import bancoDeSolucao.Solucao;
+import excecoes.HelpDeskException;
+
+public class SolucaoDAO extends AbstractDAO {
+
+	public static String className = "Solucao";
+	
+	public static SolucaoDAO instance = null;
+
+	public static SolucaoDAO getInstance() {
+		if (instance == null) {
+			instance = new SolucaoDAO();
+		}
+		return instance;
+	}
+
+	private SolucaoDAO() {
+		super();
+	}
+
+	/**
+	 * Insere um Solucao no Banco de Dados um objeto na tabela correspondente.
+	 * 
+	 * @param solucao
+	 *            O Solucao a ser salvo no Banco de Dados
+	 * @return O id do objeto criado no Banco de Dados
+	 * @throws HelpDeskException
+	 *             caso ocorra algum erro
+	 */
+	public Serializable insert(Solucao solucao) throws HelpDeskException {
+		return super.insert(solucao);
+	}
+
+	/**
+	 * Modifica um solucao no Banco de Dados.
+	 * 
+	 * @param obj
+	 *            O objeto a ser modificado no Banco de Dados
+	 * @throws HelpDeskException
+	 *             caso ocorra algum erro
+	 */
+	public void update(Solucao solucao) throws HelpDeskException {
+		super.update(solucao);
+	}
+
+	/**
+	 * Remove no Banco de Dados um determinado solucao.
+	 * 
+	 * @param solucao
+	 *            O objeto a ser removido no Banco de Dados
+	 * @throws HelpDeskException
+	 *             caso ocorra algum erro
+	 */
+	public void delete(Solucao solucao) throws HelpDeskException {
+		super.delete(solucao);
+	}
+
+	/**
+	 * Metodo que le um objeto do Banco de Dados a partir de um id.
+	 * 
+	 * @param id
+	 *            O id do objeto.
+	 * @param classe
+	 *            A classe que o objeto pertence.
+	 * @return O objeto lido do Banco de Dados.
+	 */
+
+	public Solucao read(Serializable id) {
+		return (Solucao) super.read(Solucao.class, id);
+	}
+
+	/**
+	 * Retorna uma lista de solucaos do Banco de Dados com as caracteristicas
+	 * definidas por queryString.
+	 * 
+	 * @param queryString
+	 *            A string da busca.
+	 * @return Uma lista de solucaos com as caracteristicas definidas por
+	 *         queryString.
+	 */
+	
+	public List<Solucao> getList(String queryString) {
+		return super.getList(queryString);
+	}
+
+	/**
+	 * Remove todos as solucaos contidos no Banco de Dados.
+	 * 
+	 * @throws HelpDeskException
+	 *             caso ocorra algum erro
+	 */
+	public void removeAll() throws HelpDeskException {
+		super.removeAll(className);
+	}
+}

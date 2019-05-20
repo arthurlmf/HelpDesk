@@ -1,0 +1,215 @@
+10
+
+dir
+342
+http://helpdesktre.googlecode.com/svn/trunk/HelpDesk/src
+http://helpdesktre.googlecode.com/svn
+
+
+
+2008-03-26T15:20:25.935912Z
+292
+coura.danilo
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+c261e38d-123b-0410-b799-2bbafba9b517
+
+log4j.properties
+file
+
+
+
+
+2016-03-21T21:01:38.223311Z
+6faac97798daa98419c4247caf134771
+2007-11-25T00:55:58.393632Z
+140
+andre.alfa
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+606
+
+transacao
+dir
+
+tipo
+dir
+
+util
+dir
+
+bancoDeSolucao
+dir
+
+mail
+dir
+
+hibernateRemoto.cfg.xml
+file
+
+
+
+
+2016-03-21T21:01:38.223311Z
+99a9537e4583bf24fc6657795cb22e08
+2007-12-04T13:31:40.247916Z
+223
+arthurlucio
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+2376
+
+integracaoTRE
+dir
+
+usuario
+dir
+
+pesquisa
+dir
+
+chamado
+dir
+
+excecoes
+dir
+
+hibernate.cfg.xml
+file
+
+
+
+
+2016-03-21T21:01:38.223311Z
+734919f4c8326f0acf050685fbfcd801
+2008-02-26T16:33:47.800270Z
+268
+arthurlucio
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+3117
+
+bdTRE
+dir
+
+relacionamento
+dir
+
+facade
+dir
+
+dao
+dir
+
+struts
+dir
+
+Teste.java
+file
+
+
+
+
+2016-03-21T21:01:38.223311Z
+53f6fb050e8e9eeb2b8b800df49c2397
+2008-03-21T20:26:11.145065Z
+291
+andre.alfa
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+1638
+
+sistema
+dir
+
+config
+dir
+

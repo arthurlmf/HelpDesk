@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping 
+	PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    
+    <class name="relacionamento.TransacaoDeChamado" table="transacao_de_chamado">
+      
+    <id name="id" column="id">
+    	<generator class="identity"/>
+    </id>
+      
+    <property name="idTransacao" column="id_transacao"/>
+    <property name="idChamado" column="id_chamado"/>
+    
+  </class>
+</hibernate-mapping>

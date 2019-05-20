@@ -1,0 +1,77 @@
+K 25
+svn:wc:ra_dav:version-url
+V 51
+/svn/!svn/ver/288/trunk/HelpDesk/src/bancoDeSolucao
+END
+Solucao.hbm.xml
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/!svn/ver/140/trunk/HelpDesk/src/bancoDeSolucao/Solucao.hbm.xml
+END
+Artigo.hbm.xml
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/!svn/ver/140/trunk/HelpDesk/src/bancoDeSolucao/Artigo.hbm.xml
+END
+FAQ.hbm.xml
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/!svn/ver/140/trunk/HelpDesk/src/bancoDeSolucao/FAQ.hbm.xml
+END
+PesquisaSolucao.java
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/!svn/ver/140/trunk/HelpDesk/src/bancoDeSolucao/PesquisaSolucao.java
+END
+PesquisaArtigo.java
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/!svn/ver/288/trunk/HelpDesk/src/bancoDeSolucao/PesquisaArtigo.java
+END
+PesquisaFAQ.java
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/!svn/ver/288/trunk/HelpDesk/src/bancoDeSolucao/PesquisaFAQ.java
+END
+Solucao.java
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/!svn/ver/140/trunk/HelpDesk/src/bancoDeSolucao/Solucao.java
+END
+Artigo.java
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/!svn/ver/140/trunk/HelpDesk/src/bancoDeSolucao/Artigo.java
+END
+PesquisarAll.java
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/!svn/ver/288/trunk/HelpDesk/src/bancoDeSolucao/PesquisarAll.java
+END
+BaseConhecimento.java
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/!svn/ver/140/trunk/HelpDesk/src/bancoDeSolucao/BaseConhecimento.java
+END
+GerenciadorDaBaseDeConhecimento.java
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svn/!svn/ver/288/trunk/HelpDesk/src/bancoDeSolucao/GerenciadorDaBaseDeConhecimento.java
+END
+FAQ.java
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/!svn/ver/140/trunk/HelpDesk/src/bancoDeSolucao/FAQ.java
+END

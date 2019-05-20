@@ -1,0 +1,69 @@
+package relacionamento;
+
+public class ChamadosRepassados {
+
+	private int idTransacao;
+	private  int idChamado;
+	private String idUsuario;
+
+
+
+	public ChamadosRepassados(int idTransacao, int idChamado, String idUsuario) {
+		super();
+		this.idTransacao = idTransacao;
+		this.idChamado = idChamado;
+		this.idUsuario = idUsuario;
+	}
+
+
+
+	public ChamadosRepassados() {
+	}
+
+
+	
+	public String toString(){
+		return "("+getIdTransacao()+", "+getIdChamado()+", "+getIdUsuario()+")";
+	}
+
+
+
+	public int getIdTransacao() {
+		return idTransacao;
+	}
+
+
+
+	public void setIdTransacao(int idTransacao) {
+		this.idTransacao = idTransacao;
+	}
+
+
+
+	public int getIdChamado() {
+		return idChamado;
+	}
+
+
+
+	public void setIdChamado(int idChamado) {
+		this.idChamado = idChamado;
+	}
+
+
+
+	public String getIdUsuario() {
+		return idUsuario;
+	}
+
+
+
+	public void setIdUsuario(String idUsuario) {
+		this.idUsuario = idUsuario;
+	}
+
+
+
+	
+
+}

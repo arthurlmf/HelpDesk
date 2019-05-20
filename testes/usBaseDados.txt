@@ -1,0 +1,123 @@
+# User Story 8 - Implementar uma base de dados(base de conhecimento) a partir dos chamados solucionados
+
+zerarSistema
+################### PANO DE FUNDO BEGIN ###############
+idUnidade1=criarUnidade idUnidade="zon7@tre.br" nome="Zona 7" isSuporte=false
+idUnidade2=criarUnidade idUnidade="informatica@tre.br" nome="Informatica" isSuporte=true
+idUnidade3=criarUnidade idUnidade="eletrico@tre.br" nome="Eletrico" isSuporte=true
+idUnidade4=criarUnidade idUnidade="mental@tre.br" nome="Mental" isSuporte=true
+idUnidade5=criarUnidade idUnidade="portaria@tre.br" nome="Portaria" isSuporte=false
+
+idTecnico1=criarTecnico idTecnico="inaldo@tre.br" nome="inaldo"
+idTecnico2=criarTecnico idTecnico="werber@tre.br" nome="werber"
+idTecnico3=criarTecnico idTecnico="nelson@tre.br"  nome="nelson"
+idTecnico4=criarTecnico idTecnico="lauricio@tre.br"  nome="lauricio"
+idTecnico5=criarTecnico idTecnico="erick@tre.br"  nome="erick"
+idTecnico6=criarTecnico idTecnico="danusio@tre.br"  nome="danusio"
+idTecnico7=criarTecnico idTecnico="dr.carneiro@tre.br"  nome="Dr. Carneiro"
+idTecnico8=criarTecnico idTecnico="dr.bode@tre.br"  nome="Dr. Bode"
+idTecnico9=criarTecnicoAdministrador idTecnico="admin@tre.br"  nome="Administrador"
+
+relacionarTecnicoComUnidade tecnico=${idTecnico1} unidade=${idUnidade2}
+relacionarTecnicoComUnidade tecnico=${idTecnico2} unidade=${idUnidade2}
+relacionarTecnicoComUnidade tecnico=${idTecnico3} unidade=${idUnidade2}
+relacionarTecnicoComUnidade tecnico=${idTecnico4} unidade=${idUnidade3}
+relacionarTecnicoComUnidade tecnico=${idTecnico5} unidade=${idUnidade3}
+relacionarTecnicoComUnidade tecnico=${idTecnico7} unidade=${idUnidade4}
+relacionarTecnicoComUnidade tecnico=${idTecnico8} unidade=${idUnidade4}
+
+relacionarTecnicoComUnidade tecnico=${idTecnico6} unidade=${idUnidade3}
+setarGerente tecnico=${idTecnico6} unidade=${idUnidade3}
+setarGerente tecnico=${idTecnico3} unidade=${idUnidade2}
+setarGerente tecnico=${idTecnico8} unidade=${idUnidade4}
+
+# CRIA OS TIPOS #
+idTipo1=criarTipoDaUnidade idUnidade=${idUnidade2} tipo="Hardware" 
+idTipo2=criarTipoDaUnidade idUnidade=${idUnidade2} tipo="Software" 
+idTipo3=criarTipoDaUnidade idUnidade=${idUnidade3} tipo="Fios" 
+idTipo6=criarTipoDaUnidade idUnidade=${idUnidade3} tipo="Tomadas"
+idTipo4=criarTipoDaUnidade idUnidade=${idUnidade4} tipo="Psicologico"
+idTipo5=criarTipoDaUnidade idUnidade=${idUnidade4} tipo="Psiquiatra" 
+
+## Cria Os subTipos
+idSubtipo1=criarSubtipo idUnidade=${idUnidade2} idTipo="Hardware" subtipo="Teclado" temPatrimonio=true prazoAtendimento=10
+idSubtipo2=criarSubtipo idUnidade=${idUnidade2} idTipo="Hardware" subtipo="Mouse" temPatrimonio=false prazoAtendimento=10
+idSubtipo3=criarSubtipo idUnidade=${idUnidade2} idTipo="Hardware" subtipo="Monitor" temPatrimonio=true prazoAtendimento=10
+idSubtipo4=criarSubtipo idUnidade=${idUnidade2} idTipo="Software" subtipo="Windows" temPatrimonio=false prazoAtendimento=10
+idSubtipo5=criarSubtipo idUnidade=${idUnidade2} idTipo="Software" subtipo="Linux" temPatrimonio=false prazoAtendimento=10
+idSubtipo6=criarSubtipo idUnidade=${idUnidade3} idTipo="Fios" subtipo="fio azul" temPatrimonio=true prazoAtendimento=10
+idSubtipo7=criarSubtipo idUnidade=${idUnidade3} idTipo="Fios" subtipo="fio verde" temPatrimonio=false prazoAtendimento=10
+idSubtipo12=criarSubtipo idUnidade=${idUnidade3} idTipo="Tomadas" subtipo="Tomada com protecao" temPatrimonio=true prazoAtendimento=10
+idSubtipo13=criarSubtipo idUnidade=${idUnidade3} idTipo="Tomadas" subtipo="Tomada sem protecao" temPatrimonio=false prazoAtendimento=10
+idSubtipo8=criarSubtipo idUnidade=${idUnidade4} tipo="Psiquiatra" subtipo="Esquizofrenia" temPatrimonio=false prazoAtendimento=10
+idSubtipo9=criarSubtipo idUnidade=${idUnidade4} tipo="Psiquiatra" subtipo="Bulimia" temPatrimonio=false prazoAtendimento=10
+idSubtipo10=criarSubtipo idUnidade=${idUnidade4} tipo="Psicologico"  subtipo="Depressao" temPatrimonio=false prazoAtendimento=10
+idSubtipo11=criarSubtipo idUnidade=${idUnidade4} tipo="Psicologico"  subtipo="Ansiedade" temPatrimonio=false prazoAtendimento=10
+
+#Criar o suporte
+adicionaSuporte idUnidadeSolicitante=${idUnidade4} idUnidadeSuporte=${idUnidade2}
+adicionaSuporte idUnidadeSolicitante=${idUnidade4} idUnidadeSuporte=${idUnidade3}
+adicionaSuporte idUnidadeSolicitante=${idUnidade1} idUnidadeSuporte=${idUnidade4}
+adicionaSuporte idUnidadeSolicitante=${idUnidade1} idUnidadeSuporte=${idUnidade3}
+adicionaSuporte idUnidadeSolicitante=${idUnidade1} idUnidadeSuporte=${idUnidade2}
+adicionaSuporte idUnidadeSolicitante=${idUnidade2} idUnidadeSuporte=${idUnidade3}
+adicionaSuporte idUnidadeSolicitante=${idUnidade3} idUnidadeSuporte=${idUnidade2}
+
+idChamado1=solicitarChamado descricao="fio desencapado" tipo="Fios" subtipo="fio azul" idPatrimonio="abc123" unidadeSolicitante=${idUnidade1} unidadeSuporte=${idUnidade3}
+apropriarChamado idChamado=${idChamado1} tecnico=${idTecnico4}
+
+################### PANO DE FUNDO END ###############
+
+
+# Criar FAQ
+idFaq1=criarFaq pergunta="Como alterar a senha??" resposta="chapass:newPass" tipo="servico" subtipo=""
+idFaq2=criarFaq pergunta="Como desligar o monitor?" resposta="Aperta no buraquinho" tipo="hardware" subtipo="monitor"
+idFaq3=criarFaq pergunta="Como instalar o helpDeskTRE?" resposta="Clique em abrir chamado" tipo="Software" subtipo=""
+idFaq4=criarFaq pergunta="Como desinstalar o helpDeskTRE?" resposta="Clique em abrir chamado" tipo="Software" subtipo=""
+idFaq5=criarFaq pergunta="Como se leva choque??" resposta="Coloca o dedo na tomadao" tipo="Tomadas" subtipo="omada sem protecao"
+
+# Criar Artigo
+idArtigo1=criarArtigo titulo="Abrindo um chamado" texto="Para abrir um chamado clique em abrir chamado" tipo="servico" subtipo=""
+idArtigo2=criarArtigo titulo="Ligando um computador" texto="Para fazê-lo pressione o botao power" tipo="hardware" subtipo=""
+idArtigo3=criarArtigo titulo="Instalando o helpDesk" texto="Ligue para 33332884 e pergunte a danilo" tipo="software" subtipo=""
+idArtigo4=criarArtigo titulo="Abrindo um computador" texto="Use a chave estrela" tipo="hardware" subtipo="computador"
+idArtigo5=criarArtigo titulo="Levando um choque" texto="Coloca o dedo no fio desemcapado pra vc ver" tipo="Fios" subtipo="Fios de cobre"
+
+
+# Persistencia da FAQ
+# o metodo getFaqString deve retornar a pergunta 
+expect "Como alterar a senha??" getFaq idFaq=${idFaq1}
+expect "Como desligar o monitor?" getFaq idFaq=${idFaq2}
+expect "Como instalar o helpDeskTRE?" getFaq idFaq=${idFaq3}
+
+# Persistencia daArtigo
+# o metodo getArtigoString deve retornar o titulo
+expect "Abrindo um chamado" getArtigo idArtigoFaq=${idArtigo1}
+expect "Ligando um computador" getArtigo idArtigoFaq=${idArtigo2}
+expect "Instalando o helpDesk" getArtigo idArtigoFaq=${idArtigo3}
+
+# Buscas sem resultados
+expect {[],[],[]} pesquisarAll palavraChave="farinha"
+expect {[],[],[]} pesquisarAll palavraChave="farinha seca"
+
+# Buscas somente em Artigo
+expect {["Ligando um computador"],[],[]} pesquisarAll palavraChave="Ligando"
+expect {["Abrindo um chamado"," Abrindo um computador"],[],[]} pesquisarAll palavraChave="Abrindo"
+
+# Buscas somente em FAQ
+expect {[],["Como desinstalar o helpDeskTRE?"],[]} pesquisarAll palavraChave="desinstalar"
+expect {[],["Como instalar o helpDeskTRE?"," Como desinstalar o helpDeskTRE?"],[]} pesquisarAll palavraChave="helpDeskTRE"
+
+# Buscas Artigo e FAQ
+expect {["Instalando o helpDesk"],["Como instalar o helpDeskTRE?"," Como desinstalar o helpDeskTRE?"],[]} pesquisarAll palavraChave="HelpDesk"
+expect {["Abrindo um chamado"," Ligando um computador"," Instalando o helpDesk"," Abrindo um computador"],["Como alterar a senha??"," Como desligar o monitor?"," Como instalar o helpDeskTRE?"," Como desinstalar o helpDeskTRE?"],[]} pesquisarAll palavraChave=""
+
+
+fecharChamado idChamado=${idChamado1} adicionarBase=true tecnico=${idTecnico4}
+
+expect {["Abrindo um chamado"," Ligando um computador"," Instalando o helpDesk"," Abrindo um computador"],["Como alterar a senha??"," Como desligar o monitor?"," Como instalar o helpDeskTRE?"," Como desinstalar o helpDeskTRE?"],[1]} pesquisarAll palavraChave=""
+
+idChamado1=solicitarChamado descricao="fio ruim" tipo="Fios" subtipo="fio azul" idPatrimonio="abc123" unidadeSolicitante=${idUnidade1} unidadeSuporte=${idUnidade3}
+idChamado1=solicitarChamado descricao="fio sujo" tipo="Fios" subtipo="fio azul" idPatrimonio="gfdtg4" unidadeSolicitante=${idUnidade1} unidadeSuporte=${idUnidade3}
+idChamado1=solicitarChamado descricao="fio cagado" tipo="Fios" subtipo="fio azul" idPatrimonio="345tyh" unidadeSolicitante=${idUnidade1} unidadeSuporte=${idUnidade3}
+idChamado1=solicitarChamado descricao="fio sem cabeca" tipo="Fios" subtipo="fio azul" idPatrimonio="4564h" unidadeSolicitante=${idUnidade1} unidadeSuporte=${idUnidade3}

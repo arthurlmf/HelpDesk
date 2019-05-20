@@ -1,0 +1,41 @@
+K 25
+svn:wc:ra_dav:version-url
+V 42
+/svn/!svn/ver/263/trunk/HelpDesk/src/bdTRE
+END
+Teste.java
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/svn/!svn/ver/140/trunk/HelpDesk/src/bdTRE/Teste.java
+END
+ConnectionOracle.java
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/!svn/ver/240/trunk/HelpDesk/src/bdTRE/ConnectionOracle.java
+END
+ConexaoTRE.java
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svn/!svn/ver/240/trunk/HelpDesk/src/bdTRE/ConexaoTRE.java
+END
+Equipamento.java
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svn/!svn/ver/140/trunk/HelpDesk/src/bdTRE/Equipamento.java
+END
+LoginLDAP.java
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/svn/!svn/ver/140/trunk/HelpDesk/src/bdTRE/LoginLDAP.java
+END
+ConexaoBDTRE.java
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/!svn/ver/263/trunk/HelpDesk/src/bdTRE/ConexaoBDTRE.java
+END

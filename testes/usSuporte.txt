@@ -1,0 +1,116 @@
+# User Story 3 - Relacionamento entre Unidades (Atendimento e Encaminhamento)
+
+################### PANO DE FUNDO BEGIN ###############
+zerarSistema
+
+# Unidade
+idUnidade1=criarUnidade idUnidade="natt.jp@tre.br" nome="Natt Jp" isSuporte=false
+setSuporte idUnidade=${idUnidade1} isSuporte=true
+idUnidade2=criarUnidade idUnidade="zon2@tre.br" nome="Zona 2" isSuporte=true
+idUnidade4=criarUnidade idUnidade="transporte@tre.br" nome="Transporte" isSuporte=true
+idUnidade5=criarUnidade idUnidade="eletrico@tre.br" nome="Eletrico" isSuporte=true
+idUnidade6=criarUnidade idUnidade="hidraulico@tre.br" nome="Hidraulico" isSuporte=true
+
+#Unidades somente solicitantes
+idUnidade7=criarUnidade idUnidade="zon7@tre.br" nome="Zona 7" isSuporte=false
+idUnidade8=criarUnidade idUnidade="zon8@tre.br" nome="Zona 8" isSuporte=false
+idUnidade9=criarUnidade idUnidade="zon9@tre.br" nome="Zona 9" isSuporte=false
+idUnidade10=criarUnidade idUnidade="zon10@tre.br" nome="Zona 10" isSuporte=false
+idUnidade11=criarUnidade idUnidade="zon11@tre.br" nome="Zona 11" isSuporte=false
+idUnidade12=criarUnidade idUnidade="zon12@tre.br" nome="Zona 12" isSuporte=false
+################### PANO DE FUNDO END ###############
+
+#1. LÁ ###########
+expect "" getSuportes idUnidadeSolicitante=${idUnidade1}
+expectError "ERRO 511 - Unidade inexistente." adicionaSuporte idUnidadeSolicitante="qualquer" idUnidadeSuporte=${idUnidade1}
+expectError "ERRO 511 - Unidade inexistente." adicionaSuporte idUnidadeSolicitante=${idUnidade2} idUnidadeSuporte="qualquer"
+expectError "ERRO 511 - Unidade inexistente." adicionaSuporte idUnidadeSolicitante="qualquer" idUnidadeSuporte="qualquer"
+
+
+adicionaSuporte idUnidadeSolicitante=${idUnidade2} idUnidadeSuporte=${idUnidade1}
+expect "[Natt Jp]" getSuportes idUnidadeSolicitante=${idUnidade2}
+
+adicionaSuporte idUnidadeSolicitante=${idUnidade1} idUnidadeSuporte=${idUnidade4}
+expect "[Transporte]" getSuportes idUnidadeSolicitante=${idUnidade1}
+adicionaSuporte idUnidadeSolicitante=${idUnidade1} idUnidadeSuporte=${idUnidade5}
+expect "[Transporte], [Eletrico]" getSuportes idUnidadeSolicitante=${idUnidade1}
+adicionaSuporte idUnidadeSolicitante=${idUnidade1} idUnidadeSuporte=${idUnidade6}
+expect "[Transporte], [Eletrico], [Hidraulico]" getSuportes idUnidadeSolicitante=${idUnidade1}
+
+
+#teste erro de unidade nao ser suporte
+expectError "Unidade Zona 8 nao fornece suporte" adicionaSuporte idUnidadeSolicitante=${idUnidade7} idUnidadeSuporte=${idUnidade8}
+
+adicionaSuporte idUnidadeSolicitante=${idUnidade7} idUnidadeSuporte=${idUnidade4}
+adicionaSuporte idUnidadeSolicitante=${idUnidade7} idUnidadeSuporte=${idUnidade5}
+expect "[Transporte], [Eletrico]" getSuportes idUnidadeSolicitante=${idUnidade7}
+
+adicionaSuporte idUnidadeSolicitante=${idUnidade8} idUnidadeSuporte=${idUnidade1}
+adicionaSuporte idUnidadeSolicitante=${idUnidade8} idUnidadeSuporte=${idUnidade6}
+expect "[Natt Jp], [Hidraulico]" getSuportes idUnidadeSolicitante=${idUnidade8}
+
+adicionaSuporte idUnidadeSolicitante=${idUnidade9} idUnidadeSuporte=${idUnidade5}
+adicionaSuporte idUnidadeSolicitante=${idUnidade9} idUnidadeSuporte=${idUnidade6}
+expect "[Eletrico], [Hidraulico]" getSuportes idUnidadeSolicitante=${idUnidade9}
+
+adicionaSuporte idUnidadeSolicitante=${idUnidade10} idUnidadeSuporte=${idUnidade4}
+adicionaSuporte idUnidadeSolicitante=${idUnidade10} idUnidadeSuporte=${idUnidade6}
+expect "[Transporte], [Hidraulico]" getSuportes idUnidadeSolicitante=${idUnidade10}
+
+adicionaSuporte idUnidadeSolicitante=${idUnidade11} idUnidadeSuporte=${idUnidade1}
+adicionaSuporte idUnidadeSolicitante=${idUnidade11} idUnidadeSuporte=${idUnidade4}
+adicionaSuporte idUnidadeSolicitante=${idUnidade11} idUnidadeSuporte=${idUnidade5}
+adicionaSuporte idUnidadeSolicitante=${idUnidade11} idUnidadeSuporte=${idUnidade6}
+expect "[Natt Jp], [Transporte], [Eletrico], [Hidraulico]" getSuportes idUnidadeSolicitante=${idUnidade11}
+
+
+adicionaSuporte idUnidadeSolicitante=${idUnidade12} idUnidadeSuporte=${idUnidade4}
+adicionaSuporte idUnidadeSolicitante=${idUnidade12} idUnidadeSuporte=${idUnidade5}
+adicionaSuporte idUnidadeSolicitante=${idUnidade12} idUnidadeSuporte=${idUnidade6}
+expect "[Transporte], [Eletrico], [Hidraulico]" getSuportes idUnidadeSolicitante=${idUnidade12}
+
+
+
+
+
+
+#2. LÔ ###########
+
+expect "[Zona 2], [Zona 8], [Zona 11]" getSolicitantes idUnidadeSuporte=${idUnidade1}
+expect "[Natt Jp], [Zona 7], [Zona 10], [Zona 11], [Zona 12]" getSolicitantes idUnidadeSuporte=${idUnidade4}
+expect "[Natt Jp], [Zona 7], [Zona 9], [Zona 11], [Zona 12]" getSolicitantes idUnidadeSuporte=${idUnidade5}
+expect "[Natt Jp], [Zona 8], [Zona 9], [Zona 10], [Zona 11], [Zona 12]" getSolicitantes idUnidadeSuporte=${idUnidade6}
+
+
+# 3 REMOÇÃO DE UNIDADES 
+# 3.1 REMOÇÃO DE UNIDADES SOLICITANTES
+removerUnidade idUnidade=${idUnidade7}
+
+expect "[Zona 2], [Zona 8], [Zona 11]" getSolicitantes idUnidadeSuporte=${idUnidade1}
+expect "[Natt Jp], [Zona 10], [Zona 11], [Zona 12]" getSolicitantes idUnidadeSuporte=${idUnidade4}
+expect "[Natt Jp], [Zona 9], [Zona 11], [Zona 12]" getSolicitantes idUnidadeSuporte=${idUnidade5}
+expect "[Natt Jp], [Zona 8], [Zona 9], [Zona 10], [Zona 11], [Zona 12]" getSolicitantes idUnidadeSuporte=${idUnidade6}
+
+# 3.2 REMOÇÃO DE UNIDADES DE SUPORTE
+removerUnidade idUnidade=${idUnidade4}
+
+expect "[Eletrico], [Hidraulico]" getSuportes idUnidadeSolicitante=${idUnidade1}
+expectError "ERRO 511 - Unidade inexistente." getSuportes idUnidadeSolicitante=${idUnidade7}
+expect "[Hidraulico]" getSuportes idUnidadeSolicitante=${idUnidade10}
+expect "[Natt Jp], [Eletrico], [Hidraulico]" getSuportes idUnidadeSolicitante=${idUnidade11}
+expect "[Eletrico], [Hidraulico]" getSuportes idUnidadeSolicitante=${idUnidade12}
+
+#teste adicional de erro
+expectError "ERRO 511 - Unidade inexistente." getSolicitantes idUnidadeSuporte=${idUnidade4}
+expectError "Unidade Zona 11 nao fornece suporte" getSolicitantes idUnidadeSuporte=${idUnidade11}
+
+# 4. MUDANÇA DE TIPO DE UNIDADE
+
+setSuporte idUnidade=${idUnidade5} isSuporte=false
+expect "[Hidraulico]" getSuportes idUnidadeSolicitante=${idUnidade1}
+expectError "ERRO 511 - Unidade inexistente." getSuportes idUnidadeSolicitante=${idUnidade7}
+expect "[Natt Jp], [Hidraulico]" getSuportes idUnidadeSolicitante=${idUnidade8}
+expect "[Hidraulico]" getSuportes idUnidadeSolicitante=${idUnidade9}
+expect "[Natt Jp], [Hidraulico]" getSuportes idUnidadeSolicitante=${idUnidade11}
+expect "[Hidraulico]" getSuportes idUnidadeSolicitante=${idUnidade12}
+expectError "Unidade Eletrico nao fornece suporte" getSolicitantes idUnidadeSuporte=${idUnidade5}

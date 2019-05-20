@@ -1,0 +1,102 @@
+package dao;
+
+import java.io.Serializable;
+import java.util.List;
+
+import transacao.Intervencao;
+import excecoes.HelpDeskException;
+
+public class IntervencaoDAO extends AbstractDAO {
+
+	public static String className = "Intervencao";
+
+	public static IntervencaoDAO instance = null;
+
+	public static IntervencaoDAO getInstance() {
+		if (instance == null) {
+			instance = new IntervencaoDAO();
+		}
+		return instance;
+	}
+
+	private IntervencaoDAO() {
+		super();
+	}
+
+	/**
+	 * Insere um Intervencao no Banco de Dados um objeto na tabela
+	 * correspondente.
+	 * 
+	 * @param intervencao
+	 *            O Intervencao a ser salvo no Banco de Dados
+	 * @return O id do objeto criado no Banco de Dados
+	 * @throws HelpDeskException
+	 *             caso ocorra algum erro
+	 */
+	public Serializable insert(Intervencao intervencao)
+			throws HelpDeskException {
+		return super.insert(intervencao);
+	}
+
+	/**
+	 * Modifica um intervencao no Banco de Dados.
+	 * 
+	 * @param obj
+	 *            O objeto a ser modificado no Banco de Dados
+	 * @throws HelpDeskException
+	 *             caso ocorra algum erro
+	 */
+	public void update(Intervencao intervencao) throws HelpDeskException {
+		super.update(intervencao);
+	}
+
+	/**
+	 * Remove no Banco de Dados um determinado intervencao.
+	 * 
+	 * @param intervencao
+	 *            O objeto a ser removido no Banco de Dados
+	 * @throws HelpDeskException
+	 *             caso ocorra algum erro
+	 */
+	public void delete(Intervencao intervencao) throws HelpDeskException {
+		super.delete(intervencao);
+	}
+
+	/**
+	 * Metodo que le um objeto do Banco de Dados a partir de um id.
+	 * 
+	 * @param id
+	 *            O id do objeto.
+	 * @param classe
+	 *            A classe que o objeto pertence.
+	 * @return O objeto lido do Banco de Dados.
+	 */
+
+	public Intervencao read(Serializable id) {
+		return (Intervencao) super.read(Intervencao.class, id);
+	}
+
+	/**
+	 * Retorna uma lista de intervencaos do Banco de Dados com as
+	 * caracteristicas definidas por queryString.
+	 * 
+	 * @param queryString
+	 *            A string da busca.
+	 * @return Uma lista de intervencaos com as caracteristicas definidas por
+	 *         queryString.
+	 */
+	
+	public List<Intervencao> getList(String queryString) {
+		return super.getList(queryString);
+	}
+
+	/**
+	 * Remove todos as intervencaos contidos no Banco de Dados.
+	 * 
+	 * @throws HelpDeskException
+	 *             caso ocorra algum erro
+	 */
+	public void removeAll() throws HelpDeskException {
+		super.removeAll(className);
+	}
+}

@@ -1,0 +1,101 @@
+# US5 - CRUD DE TIPOS DE CHAMADO E SUBTIPOS (DE TIPOS) E RELACIONAMENTO DE TIPO COM SUBTIPO E DE TIPO COM UNIDADE
+zerarSistema
+
+################### PANO DE FUNDO BEGIN ###############
+idUnidade1=criarUnidade idUnidade="zon7@tre.br" nome="Zona 7" isSuporte=false
+idUnidade2=criarUnidade idUnidade="informatica@tre.br" nome="Informatica" isSuporte=true
+idUnidade3=criarUnidade idUnidade="eletrico@tre.br" nome="Eletrico" isSuporte=true
+idUnidade4=criarUnidade idUnidade="transporte@tre.br" nome="Transporte" isSuporte=true
+################### PANO DE FUNDO END ###############
+
+# CRIA OS TIPOS #
+idTipo1=criarTipoDaUnidade idUnidade=${idUnidade2} tipo="Hardware" 
+idTipo2=criarTipoDaUnidade idUnidade=${idUnidade2} tipo="Software" 
+idTipo3=criarTipoDaUnidade idUnidade=${idUnidade2} tipo="Psicologico" 
+idTipo4=criarTipoDaUnidade idUnidade=${idUnidade3} tipo="Fisico" 
+idTipo5=criarTipoDaUnidade idUnidade=${idUnidade3} tipo="Mecanico" 
+idTipo5=criarTipoDaUnidade idUnidade=${idUnidade4} tipo="Transporte" 
+
+
+expectError "ERRO 516 - A unidade zon7@tre.br nao fornece suporte" criarTipoDaUnidade idUnidade=${idUnidade1} tipo="Mecanico" 
+
+expectError "ERRO 517 - Tipo ja existente" criarTipoDaUnidade idUnidade=${idUnidade3} tipo="Mecanico" 
+
+expectError "ERRO 511 - Unidade inexistente." criarTipoDaUnidade idUnidade="qualquer" tipo="Mecanico" 
+
+expectError "ERRO 500 - O campo Tipo não pode ser vazio."  criarTipoDaUnidade idUnidade=${idUnidade3} tipo="" 
+
+# RECUPERAR TIPOS #
+expect "[Hardware, Psicologico, Software]" getTiposDaUnidade idUnidade=${idUnidade2}
+expect "[Fisico, Mecanico]" getTiposDaUnidade idUnidade=${idUnidade3}
+
+expectError "ERRO 511 - Unidade inexistente." getTiposDaUnidade idUnidade="qualquer"
+expectError "ERRO 518 - Unidade nao contem tipo." getTiposDaUnidade idUnidade=${idUnidade1}
+
+#ALTERAR TIPO #
+setTipo idUnidade=${idUnidade3} nomeTipo="Mecanico" newtipo="Hidraulico" 
+
+expect "[Fisico, Hidraulico]" getTiposDaUnidade idUnidade=${idUnidade3}
+
+expectError "ERRO 511 - Tipo inexistente." setTipo idUnidade=${idUnidade3} nomeTipo="qualquer" newtipo="qualquer" 
+expectError "ERRO 500 - O campo Tipo não pode ser vazio." setTipo idUnidade=${idUnidade3} tipo="Fisico" newtipo="" 
+
+#REMOVER TIPO #
+expectError "ERRO 511 - Tipo inexistente." removerTipo  idUnidade=${idUnidade3} idTipo="qualquer"
+expectError "ERRO 511 - Tipo inexistente." removerTipo  idUnidade="qualquer" idTipo="qualquer"
+removerTipo idUnidade=${idUnidade3} tipo="Hidraulico" 
+expect "[Fisico]" getTiposDaUnidade idUnidade=${idUnidade3}
+removerTipo idUnidade=${idUnidade3} tipo="Fisico" 
+expect "[]" getTiposDaUnidade idUnidade=${idUnidade3}
+expectError "ERRO 511 - Tipo inexistente." removerTipo idUnidade=${idUnidade3} tipo="Fisico" 
+
+
+# CRIA OS SUBTIPOS #
+idSubtipo1=criarSubtipo idUnidade=${idUnidade2} tipo="Hardware"  subtipo="Teclado" temPatrimonio=true  prazoAtendimento=10
+idSubtipo2=criarSubtipo idUnidade=${idUnidade2} tipo="Hardware"  subtipo="Mouse" temPatrimonio=false prazoAtendimento=10
+idSubtipo3=criarSubtipo idUnidade=${idUnidade2} tipo="Hardware"  subtipo="Monitor" temPatrimonio=true prazoAtendimento=10
+
+idSubtipo4=criarSubtipo idUnidade=${idUnidade2} tipo="Software"  subtipo="Windows" temPatrimonio=false prazoAtendimento=10
+idSubtipo5=criarSubtipo idUnidade=${idUnidade2} tipo="Software"  subtipo="Linux" temPatrimonio=false prazoAtendimento=10
+
+idSubtipo6=criarSubtipo idUnidade=${idUnidade2} tipo="Psicologico" subtipo="Esquizofrenia" temPatrimonio=false prazoAtendimento=10
+idSubtipo7=criarSubtipo idUnidade=${idUnidade2} tipo="Psicologico"  subtipo="Bulimia" temPatrimonio=false prazoAtendimento=10
+idSubtipo8=criarSubtipo idUnidade=${idUnidade2} tipo="Psicologico"  subtipo="Depressao" temPatrimonio=false prazoAtendimento=10
+idSubtipo9=criarSubtipo idUnidade=${idUnidade2} tipo="Psicologico"  subtipo="Ansiedade" temPatrimonio=false prazoAtendimento=10
+
+
+expectError "ERRO 517 - Subtipo ja existente" criarSubtipo  idUnidade=${idUnidade2} tipo="Psicologico"  subtipo="Ansiedade" temPatrimonio=false prazoAtendimento=10
+expectError "ERRO 511 - Tipo inexistente." criarSubtipo idUnidade=${idUnidade2} tipo="qualquer"  subtipo="Ansiedade" temPatrimonio=false prazoAtendimento=10
+expectError "ERRO 511 - Unidade inexistente." criarSubtipo idUnidade="qualquer" tipo="Psicologico"  subtipo="Ansiedade" temPatrimonio=false prazoAtendimento=10
+expectError "ERRO 500 - O campo Subtipo não pode ser vazio." criarSubtipo  idUnidade=${idUnidade2} tipo="Psicologico" subtipo="" temPatrimonio=false prazoAtendimento=10
+expectError "ERRO 500 - O campo Subtipo não pode ser vazio." criarSubtipo  idUnidade=${idUnidade2} tipo="Psicologico" subtipo= temPatrimonio=false prazoAtendimento=10
+
+
+
+# RECUPERAR SUBTIPOS #
+
+expect "[Monitor, Mouse, Teclado]" getSubtiposDeTipo idUnidade=${idUnidade2} tipo="Hardware"
+expect "[Linux, Windows]" getSubtiposDeTipo idUnidade=${idUnidade2} tipo="Software" 
+expect "[Ansiedade, Bulimia, Depressao, Esquizofrenia]" getSubtiposDeTipo idUnidade=${idUnidade2} tipo="Psicologico"
+expect "[]" getSubtiposDeTipo idUnidade=${idUnidade4} tipo="Transporte" 
+
+expectError "ERRO 511 - Tipo inexistente." getSubtiposDeTipo idUnidade=${idUnidade3} tipo="qualquer" 
+expectError "ERRO 500 - O campo Tipo não pode ser vazio." getSubtiposDeTipo idUnidade=${idUnidade4} tipo="" 
+expectError "ERRO 500 - O campo Tipo não pode ser vazio." getSubtiposDeTipo idUnidade= tipo= 
+
+
+expect "true" temPatrimonio idUnidade=${idUnidade2} tipo="Hardware" subtipo="Teclado"
+expect "false" temPatrimonio idUnidade=${idUnidade2} tipo="Hardware" subtipo="Mouse"
+
+
+# REMOVER  O SUBTIPO  #
+removerSubtipo idUnidade=${idUnidade2} tipo="Psicologico" subtipo="Esquizofrenia"
+expect "[Ansiedade, Bulimia, Depressao]" getSubtiposDeTipo idUnidade=${idUnidade2} tipo="Psicologico" 
+expectError "ERRO 511 - Subtipo inexistente." removerSubtipo idUnidade=${idUnidade2} tipo="Psicologico" subtipo="Esquizofrenia"
+
+#ALTERAR SUBTIPO #
+alterarSubtipo idUnidade=${idUnidade2} tipo="Psicologico"  subtipo="Bulimia" subtipo="Complexo de inferioridade" temPatrimonio=true novoPrazoAtendimento=10
+expect "[Ansiedade, Complexo de inferioridade, Depressao]" getSubtiposDeTipo idUnidade=${idUnidade2} tipo="Psicologico"
+#expect "false" temPatrimonio idSubtipo=${idSubtipo7}
+
+expectError "ERRO 511 - Subtipo inexistente." alterarSubtipo idUnidade=${idUnidade2} tipo="Psicologico"  subtipo="qualquer" subtipo="Complexo de inferioridade" temPatrimonio=true novoPrazoAtendimento=10

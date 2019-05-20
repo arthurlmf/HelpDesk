@@ -1,0 +1,53 @@
+K 25
+svn:wc:ra_dav:version-url
+V 50
+/svn/!svn/ver/249/trunk/HelpDesk/src/integracaoTRE
+END
+UnidadeBDTRE.java
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/!svn/ver/140/trunk/HelpDesk/src/integracaoTRE/UnidadeBDTRE.java
+END
+GerenteBDTRE.java
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/!svn/ver/144/trunk/HelpDesk/src/integracaoTRE/GerenteBDTRE.java
+END
+UnidadeBDTRE.hbm.xml
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/!svn/ver/140/trunk/HelpDesk/src/integracaoTRE/UnidadeBDTRE.hbm.xml
+END
+GerenteBDTRE.hbm.xml
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/!svn/ver/140/trunk/HelpDesk/src/integracaoTRE/GerenteBDTRE.hbm.xml
+END
+TecnicoBDTRE.java
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/!svn/ver/140/trunk/HelpDesk/src/integracaoTRE/TecnicoBDTRE.java
+END
+IntegracaoTREUtil.java
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/!svn/ver/162/trunk/HelpDesk/src/integracaoTRE/IntegracaoTREUtil.java
+END
+GerenciadorDeIntegracao.java
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svn/!svn/ver/249/trunk/HelpDesk/src/integracaoTRE/GerenciadorDeIntegracao.java
+END
+TecnicoBDTRE.hbm.xml
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/!svn/ver/140/trunk/HelpDesk/src/integracaoTRE/TecnicoBDTRE.hbm.xml
+END

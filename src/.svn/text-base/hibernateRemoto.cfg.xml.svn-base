@@ -1,0 +1,52 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-configuration PUBLIC
+        "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+
+<hibernate-configuration>
+
+    <session-factory>
+                
+              
+        
+        <!-- Database connection settings ORACLE -->
+     	<!-- SGRH_HD (senha h3lpd3sk), host pb1, instância adm. -->          
+        <!--
+        <property name="hibernate.connection.driver_class">oracle.jdbc.driver.OracleDriver</property>
+        <property name="hibernate.connection.url">jdbc:oracle:thin:@pb1:1521:adm</property>
+        <property name="hibernate.connection.username">SGRH_HD</property>
+        <property name="hibernate.connection.password">h3lpd3sk</property>
+        <property name="hibernate.dialect">org.hibernate.dialect.OracleDialect</property>
+        <property name="hibernate.default_schema">adm</property>-->
+       
+        <!-- Database connection settings MySQL -->
+	
+		<property name="hibernate.connection.driver_class">org.gjt.mm.mysql.Driver</property>     
+        <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/helpdesk</property>
+        <property name="hibernate.connection.username">root</property>
+        <property name="hibernate.connection.password">root</property>
+        <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
+        <property name="hibernate.default_schema">helpdesk</property>
+                
+                           
+
+        <!-- JDBC connection pool (use the built-in) -->
+        <property name="connection.pool_size">15</property>
+
+        <!-- Enable Hibernate's automatic session context management -->
+        <property name="current_session_context_class">thread</property>
+
+        <!-- Disable the second-level cache  -->
+        <property name="cache.provider_class">org.hibernate.cache.NoCacheProvider</property>
+
+        <!-- Echo all executed SQL to stdout -->
+        <property name="show_sql">false</property>
+        
+        
+        <mapping resource="integracaoTRE/UnidadeBDTRE.hbm.xml"/>
+         <mapping resource="integracaoTRE/TecnicoBDTRE.hbm.xml"/>
+        <mapping resource="integracaoTRE/GerenteBDTRE.hbm.xml"/>
+    </session-factory>
+
+</hibernate-configuration>
+

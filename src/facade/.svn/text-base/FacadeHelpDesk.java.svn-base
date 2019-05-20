@@ -1,0 +1,592 @@
+package facade;
+
+
+import integracaoTRE.UnidadeBDTRE;
+
+import java.util.List;
+
+import relacionamento.ChamadoAtendido;
+import sistema.Sistema;
+import tipo.PrimaryKeySubTipo;
+import tipo.PrimaryKeyTipo;
+import tipo.Subtipo;
+import tipo.Tipo;
+import transacao.Transacao;
+import transacao.Visita;
+import usuario.Tecnico;
+import usuario.Unidade;
+import usuario.Usuario;
+import bancoDeSolucao.Artigo;
+import bancoDeSolucao.BaseConhecimento;
+import bancoDeSolucao.FAQ;
+import bancoDeSolucao.Solucao;
+import chamado.Chamado;
+import config.Config;
+import excecoes.HelpDeskException;
+
+public class FacadeHelpDesk {
+
+	private static FacadeHelpDesk singleton;
+
+	public static FacadeHelpDesk getInstance() {
+		if (singleton == null)
+			singleton = new FacadeHelpDesk();
+		return singleton;
+	}
+
+	private Sistema system;
+	
+	public FacadeHelpDesk() {
+		super();
+		this.system = new Sistema();
+	}
+
+	public String criarUnidade(String idUnidade, String nome, boolean isSuporte)
+			throws HelpDeskException {
+		return system.criarUnidade(idUnidade.toLowerCase(), nome, isSuporte);
+	}
+
+	public Unidade getUnidade(String idUnidade) throws HelpDeskException {
+		return system.getUnidade(idUnidade);
+	}
+
+	public void removerUnidade(String idUnidade) throws HelpDeskException {
+		system.removerUnidade(idUnidade);
+	}
+
+	public void alterarUnidadeNome(String idUnidade, String novoNome)
+			throws HelpDeskException {
+		system.alterarUnidadeNome(idUnidade, novoNome);
+	}
+
+	public boolean isSuporte(String idUnidade) throws HelpDeskException {
+		return system.isSuporte(idUnidade);
+	}
+
+	public void zerarSistema() throws HelpDeskException {
+		system.zerarSistema();
+	}
+
+	public void setSuporte(String idUnidade, boolean isSuporte)
+			throws HelpDeskException {
+		system.setSuporte(idUnidade, isSuporte);
+	}
+
+	public void removerSuporte(String idUnidadeSuporte)
+			throws HelpDeskException {
+		system.removerSuporte(idUnidadeSuporte);
+	}
+
+	public void removerSuporte(String idUnidadeSolicitante,
+			String idUnidadeSuporte) throws HelpDeskException {
+		system.removerSuporte(idUnidadeSolicitante, idUnidadeSuporte);
+	}
+
+	public String getSuportes(String idUnidadeSolicitante)
+			throws HelpDeskException {
+		return system.getSuportes(idUnidadeSolicitante);
+	}
+
+	public List<Unidade> getUnidadesSuportes(String idUnidadeSolicitante)
+			throws HelpDeskException {
+		return system.getUnidadesSuportes(idUnidadeSolicitante);
+	}
+
+	public String criarTecnico(String idTecnico, String nome)
+			throws HelpDeskException {
+		return system.criarTecnico(idTecnico, nome);
+	}
+	
+	public String criarTecnicoAdministrador(String idTecnico, String nome) throws HelpDeskException{
+		return system.criarTecnicoAdministrador(idTecnico.toLowerCase(), nome);
+	}
+
+	public PrimaryKeyTipo criarTipoDaUnidade(String idUnidade, String nome)
+			throws HelpDeskException {
+		return system.criarTipoDaUnidade(idUnidade, nome);
+	}
+
+	public List<Tipo> getTiposDaUnidade(String idUnidade)
+			throws HelpDeskException {
+		return system.getTiposDaUnidade(idUnidade);
+	}
+
+	public void setTipo(String idUnidade, String nomeTipo, String newTipo)
+			throws HelpDeskException {
+		system.setTipo(idUnidade, nomeTipo, newTipo);
+	}
+
+	public void removerTipo(String idUnidade, String nomeTipo)
+			throws HelpDeskException {
+		system.removeTipo(idUnidade, nomeTipo);
+	}
+	
+	public void removerSubtipo(String idUnidade, String nomeTipo, String nomeSubtipo)
+		throws HelpDeskException {//removerSubtipo idUnidade=${idUnidade2} tipo="Psicologico" subtipo="Esquizofrenia"
+		system.removerSubtipo(idUnidade, nomeTipo,nomeSubtipo);
+	}
+
+	public PrimaryKeySubTipo criarSubtipo(String idUnidade, String tipo,
+			String subtipo, boolean temPatrimonio, int novoPrazoAtendimento) throws HelpDeskException {
+		return system.criarSubtipo(idUnidade, tipo, subtipo, temPatrimonio,novoPrazoAtendimento);
+	}
+
+	public List<Subtipo> getSubtiposDeTipo(String idUnidade, String tipo)
+			throws HelpDeskException {
+		return system.getSubtiposDeTipo(idUnidade, tipo);
+	}
+
+	public void relacionarTecnicoComUnidade(String tecnico, String unidade)
+			throws HelpDeskException {
+		system.relacionarTecnicoComUnidade(tecnico, unidade);
+	}
+
+	public void desrelacionarTecnicoComUnidade(String idTecnico)
+			throws HelpDeskException {
+		system.desrelacionarTecnicoComUnidade(idTecnico);
+	}
+
+	public int solicitarChamado(String descricao, String tipo, String subtipo,
+			String idPatrimonio, String unidadeSolicitante,
+			String unidadeSuporte) throws HelpDeskException {
+		return system.solicitarChamado(descricao, tipo, subtipo, idPatrimonio,
+				unidadeSolicitante, unidadeSuporte);
+	}
+
+	public List<Tecnico> getTecnicos(String unidade) throws HelpDeskException {
+		return system.getTecnicos(unidade);
+	}
+
+	public Tecnico getTecnico(String idTecnico) throws HelpDeskException {
+		return system.getTecnico(idTecnico);
+	}
+
+	public void removerTecnico(String idTecnico) throws HelpDeskException {
+		system.removerTecnico(idTecnico);
+	}
+
+	public void alterarTecnicoNome(String idTecnico, String novoNome)
+			throws HelpDeskException {
+		system.alterarTecnicoNome(idTecnico, novoNome);
+	}
+
+	public void adicionaSuporte(String idUnidadeSolicitante,
+			String idUnidadeSuporte) throws HelpDeskException {
+		system.adicionaSuporte(idUnidadeSolicitante, idUnidadeSuporte);
+	}
+
+	public String getSolicitantes(String idUnidadeSuporte)
+			throws HelpDeskException {
+		return system.getSolicitantes(idUnidadeSuporte);
+	}
+	
+	public List<Unidade> getSolicitantesUnidade(String idUnidadeSuporte)
+		throws HelpDeskException {
+		return system.getSolicitantesUnidade(idUnidadeSuporte);
+	}
+	
+	public boolean isAuthenticatedUser(String idUsuario, String senha)
+			throws HelpDeskException {
+		return system.isAuthenticatedUser(idUsuario, senha);
+	}
+
+	public Usuario getUsuario(String idUsuario) throws HelpDeskException {
+		return system.getUsuario(idUsuario);
+	}
+
+	public List<Unidade> getAllUnidades() {
+		return system.getAllUnidades();
+	}
+
+	public List<Tipo> getAllTipos() {
+		return system.getAllTipos();
+	}
+
+	public List<Subtipo> getAllSubtipos() {
+		return system.getAllSubtipos();
+	}
+
+	public Chamado getChamado(int idChamado) throws HelpDeskException {
+		return system.getChamado(idChamado);
+	}
+
+	public ChamadoAtendido getChamadoAtendido(int idChamado) {
+		return system.getChamadoAtendido(idChamado);
+	}
+
+	public List<Chamado> getChamadosTecnico(String idUsuario) {
+		return system.getChamadosTecnico(idUsuario);
+	}
+
+	public List<Chamado> getChamadosUnidade(String idUsuario) {
+		return system.getChamadosUnidade(idUsuario);
+	}
+
+	public List<Chamado> getChamadosSolicitados(String idUsuario) {
+		return system.getChamadosSolicitados(idUsuario);
+	}
+	
+	public List<Chamado> getChamadosRepassados(String idUnidade) throws HelpDeskException {
+		return system.getChamadosRepassados(idUnidade);
+	}
+
+	/**
+	 * Cria uma faq
+	 * 
+	 * @param pergunta
+	 *            pergunta da faq
+	 * @param resposta
+	 *            resposta da faq
+	 * @param tipo
+	 *            tipo da faq
+	 * @return
+	 * @throws HelpDeskException
+	 */
+	public String criarFaq(String pergunta, String resposta, String tipo,String subtipo)
+			throws HelpDeskException {
+		return system.criarFaq(pergunta, resposta, tipo, subtipo);
+
+	}
+
+	/**
+	 * Cria um Artigo
+	 * 
+	 * @param titulo
+	 *            titulo do artigo
+	 * @param texto
+	 *            texto do artigo
+	 * @param tipo
+	 *            tipo do artigo
+	 * @return
+	 * @throws HelpDeskException
+	 */
+	public String criarArtigo(String titulo, String texto, String tipo,String subtipo)
+			throws HelpDeskException {
+		return system.criarArtigo(titulo, texto, tipo,subtipo);
+
+	}
+
+	/**
+	 * Retorna a solucao
+	 * 
+	 * @param idSolucao
+	 *            o id da solucao
+	 * @return a solucao
+	 * @throws HelpDeskException
+	 */
+	public Solucao getSolucao(String idSolucao) throws HelpDeskException {
+		return system.getSolucao(idSolucao);
+
+	}
+
+	/**
+	 * Retorna a faq
+	 * 
+	 * @param idFaq
+	 *            o id da faq
+	 * @return a FAQ
+	 * @throws HelpDeskException
+	 */
+	public FAQ getFaq(String idFaq) throws HelpDeskException {
+		return system.getFaq(idFaq);
+
+	}
+
+	/**
+	 * Retorna o artigo
+	 * 
+	 * @param idArtigo
+	 *            o id do artigo
+	 * @return o Artigo
+	 * @throws HelpDeskException
+	 */
+	public Artigo getArtigo(String idArtigo) throws HelpDeskException {
+		return system.getArtigo(idArtigo);
+
+	}
+
+	/**
+	 * Pesquisa em artigos
+	 * 
+	 * @param titulo
+	 *            o titulo do artigo
+	 * @param texto
+	 *            o texto do artigo
+	 * @param tipo
+	 *            o tipo do artigo
+	 * @return uma List de Artigo
+	 */
+	public List<Artigo> pesquisarArtigo(String titulo, String texto, String tipo,String subtipo) {
+		return system.pesquisarArtigo(titulo, texto, tipo,subtipo);
+
+	}
+
+	/**
+	 * Pesquisa em faqs
+	 * 
+	 * @param pergunta
+	 *            a pergunta da faq
+	 * @param resposta
+	 *            a resposta da faq
+	 * @param tipo
+	 *            o tipo da faq
+	 * @return uma List de FAQ
+	 */
+	public List<FAQ> pesquisarFAQ(String pergunta, String resposta, String tipo,String subtipo) {
+		return system.pesquisarFAQ(pergunta, resposta, tipo,subtipo);
+
+	}
+
+	/**
+	 * Zerar todas as Soluções Cadastradas
+	 * 
+	 * @throws HelpDeskException
+	 *             caso ocorra algum erro
+	 */
+	public void zeraSolucao() throws HelpDeskException {
+		zeraSolucao();
+	}
+
+	/**
+	 * Zerar todas as Faqs cadastradas
+	 * 
+	 * @throws HelpDeskException
+	 *             caso ocorra algum erro
+	 */
+	public void zeraFaq() throws HelpDeskException {
+		zeraFaq();
+	}
+
+	/**
+	 * Zerar todos os artigos cadastrados
+	 * 
+	 * @throws HelpDeskException
+	 *             caso ocorra algum erro
+	 */
+	public void zeraArtigo() throws HelpDeskException {
+		zeraArtigo();
+	}
+
+	/**
+	 * Realiza a pesquisa de uma palvavra chave em todo o banco de solucao
+	 * 
+	 * @param keywWor
+	 * @return
+	 */
+	public BaseConhecimento pesquisarAll(String keywWor) {
+		return system.pesquisarAll(keywWor);
+	}
+
+	/**
+	 * Altera o atributo de um artigo
+	 * 
+	 * @param idArtigo
+	 *            o id do artigo
+	 * @param nomeAtributo
+	 *            o nome do atributo
+	 * @param novoAtributo
+	 *            o novo atributo
+	 * @throws HelpDeskException
+	 */
+	public void alterarAtributoArtigo(String idArtigo, String nomeAtributo,
+			String novoAtributo) throws HelpDeskException {
+		system.alterarAtributoArtigo(idArtigo, nomeAtributo, novoAtributo);
+	}
+
+	/**
+	 * Altera o atributo de um FAQ
+	 * 
+	 * @param idArtigo
+	 *            o id do FAQ
+	 * @param nomeAtributo
+	 *            o nome do atributo
+	 * @param novoAtributo
+	 *            o novo atributo
+	 * @throws HelpDeskException
+	 * @throws HelpDeskException
+	 */
+	public void alterarAtributoFAQ(String idFAQ, String nomeAtributo,
+			String novoAtributo) throws HelpDeskException {
+		system.alterarAtributoFAQ(idFAQ, nomeAtributo, novoAtributo);
+
+	}
+
+	public int encaminharChamado(int idChamado, String tecnicoDestino)
+			throws NumberFormatException, HelpDeskException {
+		return system.encaminharChamado(idChamado, tecnicoDestino);
+	}
+	
+	public int delegarChamado(int idChamado, String tecnicoOrigem, String tecnicoDestino)
+	throws NumberFormatException, HelpDeskException {
+		return system.delegarChamado(idChamado, tecnicoOrigem, tecnicoDestino);
+	}
+
+	public void aceitarChamado(int idChamado,String tecnicoResponsavel) throws HelpDeskException {
+		system.aceitarChamado(idChamado, tecnicoResponsavel);
+	}
+
+	public int intervirChamado(int idChamado, String descricao, boolean visivel)
+			throws NumberFormatException, HelpDeskException {
+		return system.intervirChamado(idChamado, descricao, visivel);
+	}
+
+	public void fecharChamado(int idChamado, boolean adicionarBase, String tecnicoResponsavel)
+			throws NumberFormatException, HelpDeskException {
+		system.fecharChamado(idChamado, adicionarBase, tecnicoResponsavel);
+	}
+
+	public int apropriarChamado(int idChamado, String tecnicoResponsavel)
+			throws NumberFormatException, HelpDeskException {
+		return system.apropriarChamado(idChamado, tecnicoResponsavel);
+	}
+
+	public void autorizarInterEncaminhamento(int idChamado)
+			throws HelpDeskException {
+		system.autorizarInterEncaminhamento(idChamado);
+	}
+
+	public void negarInterEncaminhamento(int idChamado)
+			throws HelpDeskException {
+		system.negarInterEncaminhamento(idChamado);
+	}
+
+	public int interEncaminharChamado(int idChamado, String unidadeDestino)
+			throws HelpDeskException {
+		return system.interEncaminharChamado(idChamado, unidadeDestino);
+	}
+
+	public List<Transacao> getTransacaoParaTecnico(int idChamado) {
+		return system.getTransacaoParaTecnico(idChamado);
+	}
+
+	public List<Transacao> getTransacaoParaUsuario(int idChamado) {
+		return system.getTransacaoParaUsuario(idChamado);
+	}
+
+	public void setarGerente(String gerente, String idUnidade)
+			throws HelpDeskException {
+		system.setarGerente(gerente, idUnidade);
+	}
+
+	public List<Tecnico> getTecnicosMenosEu(String idTecnico)
+			throws HelpDeskException {
+		return system.getTecnicosMenosEu(idTecnico);
+	}
+
+	public boolean existEquipamento(String patrimonio) throws HelpDeskException {
+		return system.existEquipamento(patrimonio);
+	}
+	
+	public Unidade getUnidadeDoTecnico(String idUsuario) throws HelpDeskException {
+		return system.getUnidadeDoTecnico(idUsuario);
+	}
+
+	
+	public void alterarSubtipo(String idUnidade, String tipo, String subtipo,
+			String novoSubtipo, boolean novoTemPatrimonio, int novoPrazoAtendimento) throws HelpDeskException {
+		 system.alterarSubtipo(idUnidade, tipo, subtipo, novoSubtipo, novoTemPatrimonio,novoPrazoAtendimento);
+	}
+	
+	public List<Unidade> getAllUnidadesSuporte(){
+		return system.getAllUnidadesSuporte();
+	}
+	
+
+	public boolean temPatrimonio(String idUnidade, String tipo, String subtipo) throws HelpDeskException {
+		return system.temPatrimonio(idUnidade,tipo,subtipo);
+	}
+
+	public Tipo getTipo(String idUnidade, String idTipo) throws HelpDeskException {
+		return system.getTipoDaUnidade(idUnidade,idTipo);
+	}
+
+	
+	public List<Chamado> pesquisaChamados(String idSolicitante, String idAtendente, String tipo, String subtipo, String estado, String patrimonio){
+		return system.pesquisaChamados(idSolicitante, idAtendente, tipo, subtipo, estado, patrimonio);
+	}
+	
+	public boolean chamadoEhAtendido(int idChamado, String idUnidade){
+		return system.chamadoEhAtendido(idChamado, idUnidade);
+	}
+	
+	public void setGerencia(String idUnidade, String tipoGerencia) throws HelpDeskException{
+		system.setGerencia(idUnidade, tipoGerencia);
+	}
+	
+	public String getGerencia(String idUnidade) throws HelpDeskException{
+		return system.getGerencia(idUnidade);
+	}
+	
+	public List<String> getGerencias() {
+		return system.getGerencias();
+	}
+	
+	public Tecnico getGerente(String idUnidade) throws HelpDeskException{
+		return system.getGerente(idUnidade);
+	}
+	
+	public boolean isGerente(String idUnidade, String idUsuario) throws HelpDeskException{
+		return system.isGerente(idUnidade,idUsuario);
+	}
+
+	public Subtipo getSubtipo(String idUnidade, String tipo, String subtipo) throws HelpDeskException {
+		return system.getSubtipo(idUnidade,tipo,subtipo);
+	}
+	
+	public List<Config> getAllConfigs(){
+		return system.getAllConfigs();
+	}
+	
+	public void alterarConfig(String id, String valor) throws HelpDeskException{
+		system.alterarConfig(id,valor);
+	}
+	
+	public Config getConfig(String id) throws HelpDeskException{
+		return system.getConfig(id);
+	}
+
+	public BaseConhecimento pesquisarAll(String palavraChave, boolean artigo,
+			boolean faq, boolean solucao) {
+		return system.pesquisarAll(palavraChave,artigo,faq,solucao);
+	}
+
+	public boolean existTipoDaUnidade(String idUnidade, String tipo) throws HelpDeskException {
+		return system.existTipoDaUnidade(idUnidade, tipo);
+	}
+
+	public  List<Unidade> getAllUnidadesSomenteSolicitantes() {
+		return system.getAllUnidadesSomenteSolicitantes();
+	}
+
+	public List<UnidadeBDTRE> getAllUnidadesTRE(){
+		return system.getAllUnidadesTRE(); 
+	}
+	
+	public boolean existUsuario(String idUsuario){
+		return system.existUsuario(idUsuario);
+	}
+
+	public int criarRelatorioVisita(int idChamado, String idTecnico, String intinerario, String imprevistos, boolean cabeamentoEstuturado, 
+			boolean layoutDoAmbiente, boolean tensaoDosEstabilizadores,	boolean instalacoesEletricas,
+			boolean limpezaDosMicros, boolean tensaoDosNoBreaks, boolean instalacoesFisicas,
+			boolean limpezaDasImpressoras, boolean organizacaoDosCabos,	boolean imagensDosMicros,
+			String outrosString, boolean outros, String servicosRealizados, String pendencias) throws HelpDeskException {
+		return system.criarRelatorioVisita(idChamado, idTecnico, intinerario, imprevistos, cabeamentoEstuturado, 
+				layoutDoAmbiente, tensaoDosEstabilizadores,	instalacoesEletricas,
+				limpezaDosMicros, tensaoDosNoBreaks, instalacoesFisicas,
+				limpezaDasImpressoras, organizacaoDosCabos,	imagensDosMicros,
+				outrosString, outros, servicosRealizados, pendencias);
+		
+	}
+
+	public Visita getVisita(int idVisita) {
+		return system.getVisita(idVisita);
+	}
+
+	public List gerarRelatorio(String unidadeSolicitante,
+			String unidadeAtendente, String tecnico, String ida, String volta,
+			String tipo, String subtipo, String estado, String patrimonio) throws HelpDeskException {
+		return system.gerarRelatorio(unidadeSolicitante, unidadeAtendente, tecnico, ida, volta, tipo, subtipo, estado, patrimonio);
+	}
+	
+}

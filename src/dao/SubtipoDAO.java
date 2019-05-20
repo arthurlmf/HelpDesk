@@ -1,0 +1,141 @@
+package dao;
+
+import java.io.Serializable;
+import java.util.List;
+
+import org.hibernate.Criteria;
+import org.hibernate.Session;
+import org.hibernate.criterion.Expression;
+
+import relacionamento.ResponsavelDoChamado;
+import tipo.PrimaryKeySubTipo;
+import tipo.Subtipo;
+import excecoes.HelpDeskException;
+
+/**
+ * Classe que representa um Subtipo DAO
+ * @author arthur.farias
+ *
+ */
+public class SubtipoDAO extends AbstractDAO {
+
+	public static String className = "Subtipo";
+	public static SubtipoDAO instance = null;
+
+	public static SubtipoDAO getInstance() {
+		if (instance == null) {
+			instance = new SubtipoDAO();
+		}
+		return instance;
+	}
+
+	private SubtipoDAO() {
+		super();
+	}
+
+	/**
+	 * Insere um Subtipo no Banco de Dados um objeto na tabela correspondente.
+	 * 
+	 * @param subtipo O Subtipo a ser salvo no Banco de Dados
+	 * @return O id do objeto criado no Banco de Dados
+	 * @throws HelpDeskException caso ocorra algum erro
+	 */
+	public Serializable insert(Subtipo subtipo) throws HelpDeskException {
+		return super.insert(subtipo);
+	}
+
+	/**
+	 * Modifica um subtipo no Banco de Dados.
+	 * 
+	 * @param obj O objeto a ser modificado no Banco de Dados
+	 * @throws HelpDeskException caso ocorra algum erro
+	 */
+	public void update(Subtipo subtipo) throws HelpDeskException {
+		super.update(subtipo);
+	}
+
+	/**
+	 * Remove no Banco de Dados um determinado subtipo.
+	 * 
+	 * @param subtipo O objeto a ser removido no Banco de Dados
+	 * @throws HelpDeskException caso ocorra algum erro
+	 */
+	public void delete(Subtipo subtipo) throws HelpDeskException {
+		super.delete(subtipo);
+	}
+
+	/**
+	 * Metodo que le um objeto do Banco de Dados a partir de um id.
+	 * 
+	 * @param id     O id do objeto.
+	 * @param classe A classe que o objeto pertence.
+	 * @return O objeto lido do Banco de Dados.
+	 */
+
+	public Subtipo read(Serializable id) {
+		return (Subtipo) super.read(Subtipo.class, id);
+	}
+
+	/**
+	 * Retorna uma lista de subtipos do Banco de Dados com as caracteristicas
+	 * definidas por queryString.
+	 * 
+	 * @param queryString A string da busca.
+	 * @return Uma lista de subtipos com as caracteristicas definidas por
+	 *         queryString.
+	 */
+
+	public List<Subtipo> getList(String queryString) {
+		return super.getList(queryString);
+	}
+
+	/**
+	 * Remove todos as subtipos contidos no Banco de Dados.
+	 * 
+	 * @throws HelpDeskException caso ocorra algum erro
+	 */
+	public void removeAll() throws HelpDeskException {
+		super.removeAll(className);
+	}
+
+	public synchronized List<Subtipo> getAll() {
+		return super.getAll(className);
+	}
+
+	public synchronized boolean existeSubtipo(String idUnidade, String nomeTipo, String nome_subtipo) {
+		Session sess = openSession();
+		Criteria consulta = sess.createCriteria(Subtipo.class);
+		PrimaryKeySubTipo pkSt = new PrimaryKeySubTipo(idUnidade, nomeTipo, nome_subtipo);
+		consulta.add(Expression.like("chaveSubtipo", pkSt));
+		List<ResponsavelDoChamado> resultado = consulta.list();
+		return resultado.size() != 0;
+	}
+
+	/**
+	 * Recupera uma lista de subtipos de um tipo de uma unidade na ordem alfabética
+	 * 
+	 * @param idUnidade
+	 * @param nomeTipo
+	 * @return
+	 */
+	public synchronized List<Subtipo> getSubtipos(String idUnidade, String nomeTipo) {
+		Session sess = openSession();
+		Criteria consulta = sess.createCriteria(Subtipo.class);
+		String conditionQuery = "chaveSubtipo.idUnidade" + " like '" + idUnidade + "'" + " and "
+				+ "chaveSubtipo.nomeTipo" + " like '" + nomeTipo + "'" + " order by " + "chaveSubtipo.nomeSubtipo "
+				+ "asc";
+		String queryCompleta = "from " + className + " objeto where " + conditionQuery;
+		List<Subtipo> resultado = getList(queryCompleta);
+		return resultado;
+	}
+
+	public synchronized boolean existeSubTipo(String nomeSubtipo) {
+		List<Subtipo> subtipos = getAll();
+		for (Subtipo sub : subtipos) {
+			if (sub.getNomeSubTipo().equalsIgnoreCase(nomeSubtipo)) {
+				return true;
+			}
+		}
+		return false;
+	}
+}

@@ -1,0 +1,41 @@
+K 25
+svn:wc:ra_dav:version-url
+V 41
+/svn/!svn/ver/273/trunk/HelpDesk/src/tipo
+END
+PrimaryKeyTipo.java
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/!svn/ver/140/trunk/HelpDesk/src/tipo/PrimaryKeyTipo.java
+END
+Subtipo.hbm.xml
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/svn/!svn/ver/273/trunk/HelpDesk/src/tipo/Subtipo.hbm.xml
+END
+Tipo.java
+K 25
+svn:wc:ra_dav:version-url
+V 51
+/svn/!svn/ver/140/trunk/HelpDesk/src/tipo/Tipo.java
+END
+Tipo.hbm.xml
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/svn/!svn/ver/140/trunk/HelpDesk/src/tipo/Tipo.hbm.xml
+END
+PrimaryKeySubTipo.java
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/!svn/ver/140/trunk/HelpDesk/src/tipo/PrimaryKeySubTipo.java
+END
+Subtipo.java
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/svn/!svn/ver/273/trunk/HelpDesk/src/tipo/Subtipo.java
+END

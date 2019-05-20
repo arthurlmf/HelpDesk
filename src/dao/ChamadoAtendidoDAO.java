@@ -1,0 +1,141 @@
+package dao;
+
+import java.io.Serializable;
+import java.util.List;
+
+import org.hibernate.Criteria;
+import org.hibernate.Session;
+import org.hibernate.criterion.Expression;
+
+import relacionamento.ChamadoAtendido;
+import excecoes.HelpDeskException;
+/**
+ * Classe que representa um Chamado Atendido DAO
+ * @author Arthur Farias
+ *
+ */
+public class ChamadoAtendidoDAO extends AbstractDAO {
+
+	public static String className = "ChamadoAtendido";
+
+	public static ChamadoAtendidoDAO instance = null;
+
+	public static ChamadoAtendidoDAO getInstance() {
+		if (instance == null) {
+			instance = new ChamadoAtendidoDAO();
+		}
+		return instance;
+	}
+
+	public ChamadoAtendidoDAO() {
+		super();
+	}
+
+	/**
+	 * Insere um ChamadoAtendido no Banco de Dados um objeto na tabela
+	 * correspondente.
+	 * 
+	 * @param chamadoAtendido O ChamadoAtendido a ser salvo no Banco de Dados
+	 * @return O id do objeto criado no Banco de Dados
+	 * @throws HelpDeskException caso ocorra algum erro
+	 */
+	public Serializable insert(ChamadoAtendido chamadoAtendido) throws HelpDeskException {
+		return super.insert(chamadoAtendido);
+	}
+
+	/**
+	 * Modifica um chamadoAtendido no Banco de Dados.
+	 * 
+	 * @param obj O objeto a ser modificado no Banco de Dados
+	 * @throws HelpDeskException caso ocorra algum erro
+	 */
+	public void update(ChamadoAtendido chamadoAtendido) throws HelpDeskException {
+		super.update(chamadoAtendido);
+	}
+
+	/**
+	 * Remove no Banco de Dados um determinado chamadoAtendido.
+	 * 
+	 * @param chamadoAtendido O objeto a ser removido no Banco de Dados
+	 * @throws HelpDeskException caso ocorra algum erro
+	 */
+	public void delete(ChamadoAtendido chamadoAtendido) throws HelpDeskException {
+		super.delete(chamadoAtendido);
+	}
+
+	/**
+	 * Metodo que le um objeto do Banco de Dados a partir de um id.
+	 * 
+	 * @param id     O id do objeto.
+	 * @param classe A classe que o objeto pertence.
+	 * @return O objeto lido do Banco de Dados.
+	 */
+
+	public ChamadoAtendido read(Serializable id) {
+		return (ChamadoAtendido) super.read(ChamadoAtendido.class, id);
+	}
+
+	/**
+	 * Retorna uma lista de chamadoAtendidos do Banco de Dados com as
+	 * caracteristicas definidas por queryString.
+	 * 
+	 * @param queryString A string da busca.
+	 * @return Uma lista de chamadoAtendidos com as caracteristicas definidas por
+	 *         queryString.
+	 */
+
+	public List<ChamadoAtendido> getList(String queryString) {
+		return super.getList(queryString);
+	}
+
+	/**
+	 * Remove todos as chamadoAtendidos contidos no Banco de Dados.
+	 * 
+	 * @throws HelpDeskException caso ocorra algum erro
+	 */
+	public void removeAll() throws HelpDeskException {
+		super.removeAll(className);
+	}
+
+	public synchronized ChamadoAtendido getChamadoAtendidos(int idChamado) {
+		Session sess = openSession();
+		Criteria consulta = sess.createCriteria(ChamadoAtendido.class);
+
+		consulta.add(Expression.like("idChamado", idChamado));
+
+		List<ChamadoAtendido> resultado = consulta.list();
+		return resultado.get(0);
+	}
+
+	public synchronized List<ChamadoAtendido> getChamadosUnidade(String unidadeSuporte) {
+		Session sess = openSession();
+		Criteria consulta = sess.createCriteria(ChamadoAtendido.class);
+
+		consulta.add(Expression.like("unidadeAtendente", unidadeSuporte));
+
+		List<ChamadoAtendido> resultado = consulta.list();
+		return resultado;
+	}
+
+	public synchronized List<ChamadoAtendido> getChamadosSolicitados(String unidadeSolicitante) {
+		Session sess = openSession();
+		Criteria consulta = sess.createCriteria(ChamadoAtendido.class);
+
+		consulta.add(Expression.like("unidadeSolicitante", unidadeSolicitante));
+
+		List<ChamadoAtendido> resultado = consulta.list();
+		return resultado;
+	}
+
+	public synchronized boolean chamadoEhAtendido(int idChamado, String idUnidade) {
+		Session sess = openSession();
+		Criteria consulta = sess.createCriteria(ChamadoAtendido.class);
+
+		consulta.add(Expression.like("unidadeAtendente", idUnidade));
+		consulta.add(Expression.like("id", idChamado));
+
+		List<ChamadoAtendido> resultado = consulta.list();
+		return resultado.size() >= 1;
+	}
+
+}

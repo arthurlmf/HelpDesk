@@ -1,0 +1,23 @@
+K 25
+svn:wc:ra_dav:version-url
+V 45
+/svn/!svn/ver/224/trunk/HelpDesk/src/excecoes
+END
+HelpDeskException.java
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/!svn/ver/140/trunk/HelpDesk/src/excecoes/HelpDeskException.java
+END
+SessaoFinalizadaException.java
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/!svn/ver/140/trunk/HelpDesk/src/excecoes/SessaoFinalizadaException.java
+END
+UsuarioInexistenteException.java
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/!svn/ver/224/trunk/HelpDesk/src/excecoes/UsuarioInexistenteException.java
+END

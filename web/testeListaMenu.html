@@ -1,0 +1,97 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>Untitled Document</title>
+<style type="text/css">
+<!--
+.style3 {font-size: 12px}
+-->
+</style>
+<script type="text/JavaScript">
+<!--
+function MM_jumpMenu(targ,selObj,restore){ //v3.0
+  eval(targ+".location='"+selObj.options[selObj.selectedIndex].value+"'");
+  if (restore) selObj.selectedIndex=0;
+}
+
+function MM_findObj(n, d) { //v4.01
+  var p,i,x;  if(!d) d=document; if((p=n.indexOf("?"))>0&&parent.frames.length) {
+    d=parent.frames[n.substring(p+1)].document; n=n.substring(0,p);}
+  if(!(x=d[n])&&d.all) x=d.all[n]; for (i=0;!x&&i<d.forms.length;i++) x=d.forms[i][n];
+  for(i=0;!x&&d.layers&&i<d.layers.length;i++) x=MM_findObj(n,d.layers[i].document);
+  if(!x && d.getElementById) x=d.getElementById(n); return x;
+}
+
+function MM_jumpMenuGo(selName,targ,restore){ //v3.0
+  var selObj = MM_findObj(selName); if (selObj) MM_jumpMenu(targ,selObj,restore);
+}
+//-->
+</script>
+</head>
+
+<body>
+<form id="form1" name="form1" method="post" action="">
+  <table border="0" align="center" cellpadding="0" cellspacing="4" bordercolor="#CCCCCC" bgcolor="#FFFFFF">
+    <tr>
+      <td align="center" valign="top"><span class="style3">Unidades do TRE n&atilde;o <br /> 
+      Cadastradas no HelpDesk</span> </td>
+      <td align="center" valign="top">&nbsp;</td>
+      <td align="center" valign="top"><span class="style3">Unidades do TRE  <br />
+  Cadastradas no HelpDes</span>k</td>
+      <td align="center" valign="top">Formato da Unidade </td>
+    </tr>   
+    <tr>
+      <td rowspan="2" align="center" valign="top">
+	  <select name="select" size="12">
+        <option value="1">Valor1</option>
+        <option value="2">Valor2</option>
+        <option value="3">Valor3</option>
+        <option value="4">Valor4</option>
+      </select></td>
+      <td  align="center" valign="top"><p>
+        <input name="cadastrarUma" type="button" id="cadastrarUma" value=" &gt; " />
+        </p>
+        <p>
+          <input name="excluirUma" type="button" id="excluirUma" value=" &lt; " />
+          </p>
+      <p>&nbsp; </p></td>
+      <td  rowspan="2" align="center" valign="top"><select name="select3" size="12">
+        <option value="5">Valor5</option>
+        <option value="6">Valor6</option>
+        <option value="7">Valor7</option>
+      </select></td>
+      <td rowspan="2" align="center" valign="top">
+        <p>
+          <input type="checkbox" name="checkbox" value="checkbox" />
+      Unidade de Suporte</p>        <p>
+          <select name="select2">
+          </select>
+      Tipo de Ger&ecirc;ncia</p>
+      <p>
+        <input name="aplicarFormatoUnidade" type="button" id="aplicarFormatoUnidade" value="Aplicar" />
+      </p></td>
+    </tr>
+    <tr>
+      <td align="center" valign="top"><p>
+        <input name="cadastrarTodas" type="button" id="cadastrarTodas" value="&gt;&gt;" />
+        </p>
+        <p>
+          <input name="excluirTodas" type="button" id="excluirTodas" value="&lt;&lt;" />
+        </p></td>
+    </tr>
+   
+  </table>
+  <input name="Atualizar" type="submit" id="Atualizar" value="Reload Listas" />
+</form>
+<p>&nbsp;</p>
+<form name="form2" id="form2">
+  <select name="menu1" size="4" onchange="MM_jumpMenu('parent',this,1)">
+    <option>Valor1</option>
+    <option value="JavaScript: foi();">Valor2</option>
+  </select>
+  <input type="button" name="Button1" value="Go" onclick="MM_jumpMenuGo('menu1','parent',1)" />
+</form>
+<p>&nbsp;</p>
+</body>
+</html>

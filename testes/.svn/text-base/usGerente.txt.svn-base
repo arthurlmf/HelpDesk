@@ -1,0 +1,64 @@
+################### PANO DE FUNDO BEGIN ###############
+zerarSistema
+
+# Unidade
+idUnidade1=criarUnidade idUnidade="natt.jp@tre.br" nome="Natt Jp" isSuporte=false
+setSuporte idUnidade=${idUnidade1} isSuporte=true
+idUnidade2=criarUnidade idUnidade="zon2@tre.br" nome="Zona 2" isSuporte=true
+idUnidade4=criarUnidade idUnidade="transporte@tre.br" nome="Transporte" isSuporte=true
+idUnidade5=criarUnidade idUnidade="eletrico@tre.br" nome="Eletrico" isSuporte=true
+idUnidade6=criarUnidade idUnidade="hidraulico@tre.br" nome="Hidraulico" isSuporte=true
+idUnidade7=criarUnidade idUnidade="zon7@tre.br" nome="Zona 7" isSuporte=false
+
+idTecnico1=criarTecnico idTecnico="inaldo@tre.br" nome="inaldo"
+idTecnico2=criarTecnico idTecnico="werber@tre.br" nome="werber"
+idTecnico3=criarTecnico idTecnico="nelson@tre.br"  nome="nelson"
+idTecnico4=criarTecnico idTecnico="lauricio@tre.br"  nome="lauricio"
+idTecnico5=criarTecnico idTecnico="erick@tre.br"  nome="erick"
+idTecnico6=criarTecnico idTecnico="danusio@tre.br"  nome="danusio"
+idTecnico7=criarTecnico idTecnico="calberto@tre.br"  nome="carlos alberto"
+idTecnico9=criarTecnico idTecnico="sylvio@tre.br"  nome="sylvio"
+idTecnico10=criarTecnico idTecnico="jpaulo@tre.br"  nome="joao paulo"
+idTecnico11=criarTecnico idTecnico="guga@tre.br"  nome="ze de guga"
+idTecnico12=criarTecnico idTecnico="carloscg@tre.br"  nome="carlos"
+idTecnico13=criarTecnico idTecnico="jerry@tre.br"  nome="jerry"
+idTecnico14=criarTecnico idTecnico="jonascg@tre.br"  nome="jonas"
+idTecnico15=criarTecnico idTecnico="beto@tre.br" nome="roberto"
+
+relacionarTecnicoComUnidade tecnico=${idTecnico1} unidade=${idUnidade1}
+relacionarTecnicoComUnidade tecnico=${idTecnico2} unidade=${idUnidade4}
+relacionarTecnicoComUnidade tecnico=${idTecnico3} unidade=${idUnidade2}
+relacionarTecnicoComUnidade tecnico=${idTecnico4} unidade=${idUnidade2}
+relacionarTecnicoComUnidade tecnico=${idTecnico5} unidade=${idUnidade3}
+relacionarTecnicoComUnidade tecnico=${idTecnico6} unidade=${idUnidade3}
+relacionarTecnicoComUnidade tecnico=${idTecnico7} unidade=${idUnidade4}
+relacionarTecnicoComUnidade tecnico=${idTecnico8} unidade=${idUnidade4}
+relacionarTecnicoComUnidade tecnico=${idTecnico9} unidade=${idUnidade5}
+relacionarTecnicoComUnidade tecnico=${idTecnico10} unidade=${idUnidade5}
+relacionarTecnicoComUnidade tecnico=${idTecnico11} unidade=${idUnidade6}
+relacionarTecnicoComUnidade tecnico=${idTecnico12} unidade=${idUnidade6}
+relacionarTecnicoComUnidade tecnico=${idTecnico13} unidade=${idUnidade6}
+relacionarTecnicoComUnidade tecnico=${idTecnico14} unidade=${idUnidade6}
+
+################### PANO DE FUNDO END ###############
+
+expectError "ERRO 511 - Tecnico inexistente." setarGerente tecnico=2000 unidade=${idUnidade1}
+expectError "ERRO 511 - Tecnico inexistente." setarGerente tecnico="adeildo" unidade=${idUnidade1}
+expectError "ERRO 511 - Tecnico inexistente." setarGerente tecnico=  unidade=${idUnidade1}
+
+expectError "ERRO xxx - Unidade inexistente." setarGerente tecnico=${idTecnico1} unidade="nao existe" 
+expectError "ERRO xxx - Unidade inexistente." setarGerente tecnico=${idTecnico1} unidade=
+
+expectError "ERRO xxx - Tecnico inexistente." setarGerente tecnico="nao existe" unidade="nao existe"
+
+expectError "ERRO xxx - Tecnico nao esta relacionado com a unidade." setarGerente tecnico=${idTecnico14} unidade=${idUnidade1}
+
+expectError "ERRO xxx - Unidade nao eh de suporte." setarGerente tecnico=${idTecnico14} unidade=${idUnidade7}
+
+setarGerente tecnico=${idTecnico11} unidade=${idUnidade6}
+expect ${idTecnico11} getGerente unidade=${idUnidade6}
+
+setarGerente tecnico=${idTecnico13} unidade=${idUnidade6}
+expect ${idTecnico13} getGerente unidade=${idUnidade6} 
+
+

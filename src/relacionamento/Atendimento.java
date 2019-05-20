@@ -1,0 +1,58 @@
+package relacionamento;
+
+/**
+ * Classe que representa um Atendimento
+ * @author arthur.farias
+ *
+ */
+public class Atendimento {
+
+	private int id;
+	private String idUnidadeSolicitante;
+	private String idUnidadeSuporte;
+
+	public Atendimento(int id, String idUnidadeAtendente, String idUnidadeSolicitante) {
+		super();
+		this.id = id;
+		this.idUnidadeSuporte = idUnidadeAtendente;
+		this.idUnidadeSolicitante = idUnidadeSolicitante;
+	}
+
+	public Atendimento(String idUnidadeSolicitante, String idUnidadeSuporte) {
+		super();
+		this.idUnidadeSuporte = idUnidadeSuporte;
+		this.idUnidadeSolicitante = idUnidadeSolicitante;
+	}
+
+	public Atendimento() {
+	}
+
+	public String getIdUnidadeSuporte() {
+		return idUnidadeSuporte;
+	}
+
+	public void setIdUnidadeSuporte(String idUnidadeAtendente) {
+		this.idUnidadeSuporte = idUnidadeAtendente;
+	}
+
+	public String getIdUnidadeSolicitante() {
+		return idUnidadeSolicitante;
+	}
+
+	public void setIdUnidadeSolicitante(String idUnidadeSolicitante) {
+		this.idUnidadeSolicitante = idUnidadeSolicitante;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public String toString() {
+		return "(" + getIdUnidadeSolicitante() + ", " + getIdUnidadeSuporte() + ")";
+	}
+
+}

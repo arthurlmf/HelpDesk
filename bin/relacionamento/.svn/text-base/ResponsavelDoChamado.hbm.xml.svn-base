@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping 
+	PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    
+    <class name="relacionamento.ResponsavelDoChamado" table="responsavel_do_chamado">
+      
+    <id name="idChamado" column="id_chamado">
+    </id>      
+    <property name="idTecnico" column="id_tecnico"/>
+    
+  </class>
+</hibernate-mapping>

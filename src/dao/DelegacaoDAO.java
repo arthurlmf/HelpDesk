@@ -1,0 +1,95 @@
+package dao;
+
+import java.io.Serializable;
+import java.util.List;
+import transacao.Delegacao;
+import excecoes.HelpDeskException;
+
+/**
+ * Classe que representa Delegacao DAO
+ * 
+ * @author Arthur Farias
+ *
+ */
+public class DelegacaoDAO extends AbstractDAO {
+
+	public static String className = "Delegacao";
+
+	public static DelegacaoDAO instance = null;
+
+	public static DelegacaoDAO getInstance() {
+		if (instance == null) {
+			instance = new DelegacaoDAO();
+		}
+		return instance;
+	}
+
+	private DelegacaoDAO() {
+		super();
+	}
+
+	/**
+	 * Insere um Delegacao no Banco de Dados um objeto na tabela correspondente.
+	 * 
+	 * @param delegacao O Delegacao a ser salvo no Banco de Dados
+	 * @return O id do objeto criado no Banco de Dados
+	 * @throws HelpDeskException caso ocorra algum erro
+	 */
+	public Serializable insert(Delegacao delegacao) throws HelpDeskException {
+		return super.insert(delegacao);
+	}
+
+	/**
+	 * Modifica um delegacao no Banco de Dados.
+	 * 
+	 * @param obj O objeto a ser modificado no Banco de Dados
+	 * @throws HelpDeskException caso ocorra algum erro
+	 */
+	public void update(Delegacao delegacao) throws HelpDeskException {
+		super.update(delegacao);
+	}
+
+	/**
+	 * Remove no Banco de Dados um determinado delegacao.
+	 * 
+	 * @param delegacao O objeto a ser removido no Banco de Dados
+	 * @throws HelpDeskException caso ocorra algum erro
+	 */
+	public void delete(Delegacao delegacao) throws HelpDeskException {
+		super.delete(delegacao);
+	}
+
+	/**
+	 * Metodo que le um objeto do Banco de Dados a partir de um id.
+	 * 
+	 * @param id     O id do objeto.
+	 * @param classe A classe que o objeto pertence.
+	 * @return O objeto lido do Banco de Dados.
+	 */
+
+	public Delegacao read(Serializable id) {
+		return (Delegacao) super.read(Delegacao.class, id);
+	}
+
+	/**
+	 * Retorna uma lista de delegacaos do Banco de Dados com as caracteristicas
+	 * definidas por queryString.
+	 * 
+	 * @param queryString A string da busca.
+	 * @return Uma lista de delegacaos com as caracteristicas definidas por
+	 *         queryString.
+	 */
+
+	public List<Delegacao> getList(String queryString) {
+		return super.getList(queryString);
+	}
+
+	/**
+	 * Remove todos as delegacaos contidos no Banco de Dados.
+	 * 
+	 * @throws HelpDeskException caso ocorra algum erro
+	 */
+	public void removeAll() throws HelpDeskException {
+		super.removeAll(className);
+	}
+}

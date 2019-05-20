@@ -1,0 +1,19 @@
+package bdTRE;
+import excecoes.HelpDeskException;
+
+public class Teste {
+	
+	public static void main(String[] args) throws HelpDeskException {
+//		ConexaoTRE hibernate = new ConexaoTRE();
+//		//Equipamento eq = hibernate.getEquipamentos();
+//		System.out.println(hibernate.getEquipamentos());
+//		System.out.println(hibernate.existsEquipamento("A0177700"));
+//		System.out.println(hibernate.existsEquipamento("Z"));
+		
+		ConexaoBDTRE conexao = new  ConexaoBDTRE();
+		conexao.isAuthenticatedUser("","");
+		
+		
+	}
+
+}
